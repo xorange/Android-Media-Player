@@ -5,8 +5,6 @@
 #include "SDL.h"
 #include "SDL_thread.h"
 
-#include <stdio.h>
-
 int main(int argc, char *argv[])
 {
   AVFormatContext *pFormatCtx;
@@ -26,33 +24,28 @@ void** pixels;
 int txtLocked;
 int* pitch;
 SDL_Rect        rect;
-//SDL_Event       event;
+SDL_Event       event;
 
 
   if(argc < 2) {
-    fprintf(stderr, "Usage: test <file>\n");
-    exit(1);
-  }
-  // Register all formats and codecs
-  av_register_all();
-  
-  if(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_TIMER)) {
-    fprintf(stderr, "Could not initialize SDL - %s\n", SDL_GetError());
+    SDL_SetError("Usage: test <file>\n");
     exit(1);
   }
 
-  // Open video file
+/*****************************************************/
+/* FFmpeg */
+/*****************************************************/
+
+  av_register_all();
+
   if(av_open_input_file(&pFormatCtx, argv[1], NULL, 0, NULL)!=0)
-    return -1; // Couldn't open file
+    return -1;
   
-  // Retrieve stream information
   if(av_find_stream_info(pFormatCtx)<0)
-    return -1; // Couldn't find stream information
+    return -1;
   
-  // Dump information about file onto standard error
   dump_format(pFormatCtx, 0, argv[1], 0);
   
-  // Find the first video stream
   videoStream=-1;
   for(i=0; i<pFormatCtx->nb_streams; i++)
     if(pFormatCtx->streams[i]->codec->codec_type==AVMEDIA_TYPE_VIDEO) {
@@ -60,47 +53,61 @@ SDL_Rect        rect;
       break;
     }
   if(videoStream==-1)
-    return -1; // Didn't find a video stream
+    return -1;
   
-  // Get a pointer to the codec context for the video stream
   pCodecCtx=pFormatCtx->streams[videoStream]->codec;
   
-  // Find the decoder for the video stream
   pCodec=avcodec_find_decoder(pCodecCtx->codec_id);
   if(pCodec==NULL) {
-    fprintf(stderr, "Unsupported codec!\n");
-    return -1; // Codec not found
+    SDL_SetError("Unsupported codec!\n");
+    return -1;
   }
   
-  // Open codec
   if(avcodec_open(pCodecCtx, pCodec)<0)
-    return -1; // Could not open codec
+    return -1;
   
-  // Allocate video frame
   pFrame=avcodec_alloc_frame();
+
+/*****************************************************/
+/* FFmpeg */
+/*****************************************************/
+
+/*****************************************************/
+/* SDL init */
+/*****************************************************/
+  
+  if(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_TIMER) < 0) {
+    SDL_SetError("Could not initialize SDL - ");
+    SDL_SetError("SDL_GetError()\n");
+    return 1;
+  }
 
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@
 // Create the window where we will draw.
-        window = SDL_CreateWindow("Texture - Window",
+window = SDL_CreateWindow("Texture - Window - Video",
                         SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
                         512, 512,
                         SDL_WINDOW_SHOWN);
 
-        // We must call SDL_CreateRenderer in order for draw calls to affect this window.
-        renderer = SDL_CreateRenderer(window, -1, 0);
+// We must call SDL_CreateRenderer in order for draw calls to affect this window.
+renderer = SDL_CreateRenderer(window, -1, 0);
 txt = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_YV12, SDL_TEXTUREACCESS_STREAMING, 128, 128);
 
-  // Read frames and save first five frames to disk
+/*****************************************************/
+/* /SDL init */
+/*****************************************************/
+
+
+/*****************************************************/
+/* video stream */
+/*****************************************************/
+
   i=0;
   while(av_read_frame(pFormatCtx, &packet)>=0) {
-    // Is this a packet from the video stream?
     if(packet.stream_index==videoStream) {
-      // Decode video frame
       avcodec_decode_video2(pCodecCtx, pFrame, &frameFinished, 
 			   &packet);
       
-      // Did we get a video frame?
-
       if(frameFinished) {
 //int
 SDL_LockTexture(txt, NULL, pixels, pitch);
@@ -119,7 +126,6 @@ SDL_LockTexture(txt, NULL, pixels, pitch);
 	pict.linesize[2] = bmp->pitches[1];
 */
 
-	// Convert the image into YUV format that SDL uses
 	img_convert_ctx = sws_getContext(pCodecCtx->width, pCodecCtx->height,
  pCodecCtx->pix_fmt, pCodecCtx->width, pCodecCtx->height,
  PIX_FMT_YUV420P, SWS_BICUBIC, NULL, NULL, NULL);
@@ -129,10 +135,10 @@ SDL_LockTexture(txt, NULL, pixels, pitch);
 	
 SDL_UnlockTexture(txt);
 	
-	rect.x = 0;
-	rect.y = 0;
-	rect.w = pCodecCtx->width;
-	rect.h = pCodecCtx->height;
+rect.x = 0;
+rect.y = 0;
+rect.w = pCodecCtx->width;
+rect.h = pCodecCtx->height;
 //int
 SDL_RenderCopy(renderer, txt, NULL, NULL);
 
@@ -141,9 +147,8 @@ SDL_RenderCopy(renderer, txt, NULL, NULL);
 
     }
 
-    // Free the packet that was allocated by av_read_frame
     av_free_packet(&packet);
-/*
+
     SDL_PollEvent(&event);
     switch(event.type) {
     case SDL_QUIT:
@@ -153,16 +158,17 @@ SDL_RenderCopy(renderer, txt, NULL, NULL);
     default:
       break;
     }
-*/
+
   }
+
+/*****************************************************/
+/* /video stream */
+/*****************************************************/
   
-  // Free the YUV frame
   av_free(pFrame);
   
-  // Close the codec
   avcodec_close(pCodecCtx);
   
-  // Close the video file
   av_close_input_file(pFormatCtx);
   
   return 0;

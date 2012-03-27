@@ -13,7 +13,7 @@ SDL_PATH := ../SDL
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/$(SDL_PATH)/include
 
 LOCAL_SRC_FILES := $(SDL_PATH)/src/main/android/SDL_android_main.cpp \
-	sdltest.c
+	video.c
 
 #have to be +=, have to having SDL2 and ffmpeg, as we having 2 libs
 LOCAL_SHARED_LIBRARIES += SDL2
