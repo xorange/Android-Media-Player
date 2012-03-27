@@ -1,0 +1,83 @@
+http://wiki.libsdl.org/moin.cgi/MigrationGuide#Looking_for_information
+
+Now, we have two structures:
+
+SDL_Surface: software surfaces, working like in 1.2, but never accelerated
+SDL_Texture: hardware surfaces, whose pixels are not directly accessible (no ->pixels field)
+
+--#
+SDL_Surface
+
+Remarks:
+
+With most surfaces you can access the pixels directly. Surfaces that have been optimized with SDL_SetSurfaceRLE() should be locked with SDL_LockSurface() before accessing pixels. When you are done you should call SDL_UnlockSurface() before blitting.
+
+Related Functions:
+
+SDL_ConvertSurface	//Use this function to copy an existing surface into a new one that is optimized for blitting to a surface of a specified pixel format.
+
+SDL_CreateRGBSurface	//Use this function to allocate a new RGB surface.
+SDL_CreateRGBSurfaceFrom	//Use this function to allocate a new RGB surface with existing pixel data.
+
+SDL_FillRect
+SDL_FillRects
+
+SDL_FreeSurface		//Use this function to free an RGB surface.
+
+SDL_GetClipRect
+SDL_GetColorKey
+SDL_GetSurfaceAlphaMod
+SDL_GetSurfaceBlendMode
+SDL_GetSurfaceColorMod
+
+SDL_LoadBMP_RW
+SDL_LockSurface		//Use this function to set up a surface for directly accessing the pixels.
+Remarks:
+
+Between calls to SDL_LockSurface() / SDL_UnlockSurface(), you can write to and read from surface->pixels, using the pixel format stored in surface->format. Once you are done accessing the surface, you should use SDL_UnlockSurface() to release it.
+
+Not all surfaces require locking. If SDL_MUSTLOCK(surface) evaluates to 0, then you can read and write to the surface at any time, and the pixel format of the surface will not change.
+
+SDL_LowerBlit
+
+SDL_MUSTLOCK		//Use this function to determine whether a surface must be locked for access.
+
+SDL_SaveBMP_RW
+
+SDL_SetClipRect
+SDL_SetColorKey
+SDL_SetSurfaceAlphaMod
+SDL_SetSurfaceBlendMode
+SDL_SetSurfaceColorMod
+SDL_SetSurfacePalette
+SDL_SetSurfaceRLE
+
+SDL_SoftStretch
+
+SDL_UnlockSurface
+
+SDL_UpperBlit
+
+
+
+SDL_PixelFormat
+
+A structure that contains pixel format information.
+Uint32 format
+Uint8 BitsPerPixel
+Uint8 BytesPerPixel
+Uint32 Rmask
+Uint32 Gmask
+Uint32 Bmask
+Uint32 Amask
+SDL_Palette* palette
+
+
+
+
+
+
+
+--#
+using http://wiki.libsdl.org/moin.cgi/SDL_RenderPresent 's code to test SDL.
+ok!

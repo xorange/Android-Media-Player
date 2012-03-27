@@ -1,0 +1,79 @@
+SDL_Texture* txt = SDL_CreateTexture(SDL_Renderer* renderer,
+Uint32 format,
+int access, 
+int w,
+int h);
+
+format : SDL_PixelFormatEnum //SDL_PIXELFORMAT_YV12
+access : SDL_TextureAccess //SDL_TEXTUREACCESS_STREAMING, lockable
+
+Returns a pointer to the created texture or 0 if no rendering context was active, the format was unsupported, or the width or height were out of range; call SDL_GetError() for more information.
+
+ 
+
+#
+int SDL_SetTextureBlendMode(SDL_Texture* texture,
+SDL_BlendMode blendMode);
+int SDL_SetTextureColorMod(SDL_Texture* texture,
+Uint8 r,
+Uint8 g,
+Uint8 b);
+int SDL_SetTextureAlphaMod(SDL_Texture* texture,
+Uint8 alpha);
+
+ 
+
+--#
+every time to access:
+
+
+#
+int SDL_LockTexture(SDL_Texture* texture,
+const SDL_Rect* rect,
+void** pixels,
+int* pitch);
+
+rect : an SDL_Rect structure representing the area to lock for access; NULL to lock the entire texture
+
+pixels : this is filled in with a pointer to the locked pixels, appropriately offset by the locked area
+
+pitch : this is filled in with the pitch of the locked pixels
+
+
+#
+int SDL_QueryTexturePixels(SDL_Texture* texture,
+void** pixels, 
+int* pitch);
+pixels : a pointer filled in with a pointer to the pixels for the texture
+pitch : a pointer filled in with the pitch of the pixel data
+
+Returns 0 on success or a negative error code on failure; call SDL_GetError() for more information
+
+
+#
+void SDL_UnlockTexture(SDL_Texture* texture);
+
+#
+int SDL_RenderCopy(SDL_Renderer* renderer,
+SDL_Texture* texture,
+const SDL_Rect* srcrect,
+const SDL_Rect* dstrect);
+renderer : the rendering context
+texture : the source texture
+srcrect : the source SDL_Rect structure or NULL for the entire texture
+dstrect : the destination SDL_Rect structure or NULL for the entire rendering target
+
+Returns 0 on success or a negative error code on failure; call SDL_GetError() for more information.
+
+Remarks:
+The texture is blended with the destination based on its blend mode set with SDL_SetTextureBlendMode().
+
+The texture color is affected based on its color modulation set by SDL_SetTextureColorMod().
+
+The texture alpha is affected based on its alpha modulation set by SDL_SetTextureAlphaMod().
+
+ 
+
+
+--#
+SDL_UpdateTexture : This is a fairly slow function

@@ -1,0 +1,37 @@
+--#3.27
+sth weird happen. run failed on voidmain.c.
+
+not the values/strings/app_name problem.
+
+/SDL works. I use SDL/SDLActivity, failed. use /SDL built libs, failed.
+So I'm pretty sure it's not the code problem.
+
+
+
+
+I used the SDL folder and removed the previous MediaPlayer project entirely and I've got the brand new MediaPlayer project with the content same as the SDL project and then I run function tests step by step to use it.
+
+Now it seems that the previous problem may be related to my didn't run make clean.
+
+The basic function tests:
+1. voidmain.c //void
+//ok
+2. sdltest.c //red window
+//ok
+3. codeffmpeg.c //void, compiled with ffmpeg //problem running, even with being reduced to a void main.
+add: System.loadLibrary("ffmpeg"); in java. solved.
+//ok
+
+!!!!!---IMPORTANT---ALL TESTED UNDER ANDROID 4.0 AVD INSTANCE---!!!!!
+
+TODO:
+1. video.c //compiled with ffmpeg and sdl, video stream.
+1.1 how to log in native code?
+SDL_SetError(""); //try this
+1.2 how to debug with the emulator on?
+1.3 how to send a video file?
+1.4 how's the file system of android?
+
+2. asy- video and audio stream.
+3. dangon codes, syn- video and audio
+4. another Activity

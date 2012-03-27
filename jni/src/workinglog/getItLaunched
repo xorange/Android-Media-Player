@@ -1,0 +1,86 @@
+read help:
+--# = seperate
+$ = console
+! = operation taken
+<<<
+>>> = code piece
+-------------------------------------------------------------------------
+
+--#
+3.19.18.45
+I'm trying SDL2.0 on android. With current code2.c I got the following error:
+
+SDL headers=yes
+SDL declaration=yes
+SDL function call=no
+$
+orange@orange:~/workspace/eclipseWorkspace/MediaPlayer$ ~/workspace/android/android-ndk-r7/ndk-build
+Install        : libSDL2.so => libs/armeabi/libSDL2.so
+Install        : libffmpeg.so => libs/armeabi/libffmpeg.so
+Compile thumb  : player <= code2.c
+jni/src/code2.c: In function 'SDL_main':
+jni/src/code2.c:40: warning: 'av_open_input_file' is deprecated (declared at jni/src/ffmpeg/libavformat/avformat.h:1338)
+jni/src/code2.c:44: warning: 'av_find_stream_info' is deprecated (declared at jni/src/ffmpeg/libavformat/avformat.h:1420)
+jni/src/code2.c:48: warning: 'dump_format' is deprecated (declared at jni/src/ffmpeg/libavformat/avformat.h:1839)
+jni/src/code2.c:71: warning: 'avcodec_open' is deprecated (declared at jni/src/ffmpeg/libavcodec/avcodec.h:3972)
+SharedLibrary  : libplayer.so
+./obj/local/armeabi/objs/player/__/SDL/src/main/android/SDL_android_main.o: In function `Java_org_libsdl_app_SDLActivity_nativeInit':
+/home/orange/workspace/eclipseWorkspace/MediaPlayer/jni/src/../SDL/src/main/android/SDL_android_main.cpp:27: undefined reference to `SDL_Android_Init'
+./obj/local/armeabi/objs/player/code2.o: In function `SDL_main':
+/home/orange/workspace/eclipseWorkspace/MediaPlayer/jni/src/code2.c:34: undefined reference to `SDL_Init'
+/home/orange/workspace/eclipseWorkspace/MediaPlayer/jni/src/code2.c:35: undefined reference to `SDL_GetError'
+collect2: ld returned 1 exit status
+make: *** [obj/local/armeabi/libplayer.so] 错误 1
+$
+
+! changed code2.c
+with this empty main:
+<<<
+#include "libavcodec/avcodec.h"
+#include "libavformat/avformat.h"
+#include "libswscale/swscale.h"
+
+#include "SDL.h"
+#include "SDL_thread.h"
+
+#include <stdio.h>
+
+int main(int argc, char *argv[])
+{
+  
+  return 0;
+} 
+>>>
+
+$
+orange@orange:~/workspace/eclipseWorkspace/MediaPlayer$ ~/workspace/android/android-ndk-r7/ndk-build
+Install        : libSDL2.so => libs/armeabi/libSDL2.so
+Install        : libffmpeg.so => libs/armeabi/libffmpeg.so
+SharedLibrary  : libplayer.so
+./obj/local/armeabi/objs/player/__/SDL/src/main/android/SDL_android_main.o: In function `Java_org_libsdl_app_SDLActivity_nativeInit':
+/home/orange/workspace/eclipseWorkspace/MediaPlayer/jni/src/../SDL/src/main/android/SDL_android_main.cpp:27: undefined reference to `SDL_Android_Init'
+collect2: ld returned 1 exit status
+make: *** [obj/local/armeabi/libplayer.so] 错误 1
+$
+
+! changed Android.mk to:
+<<<
+LOCAL_SHARED_LIBRARIES += SDL2
+LOCAL_SHARED_LIBRARIES += ffmpeg
+>>>
+
+void main is OK.
+
+SDL headers=yes
+SDL declaration=yes
+SDL function call=no
+OK
+
+SDL headers=yes
+SDL declaration=yes
+SDL function call=yes
+OK
+
+hope it's done...
+
+well, it's successfuly launched, but it's all black and no feedback. Let me try some color to see.
