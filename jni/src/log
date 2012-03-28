@@ -24,14 +24,41 @@ add: System.loadLibrary("ffmpeg"); in java. solved.
 
 !!!!!---IMPORTANT---ALL TESTED UNDER ANDROID 4.0 AVD INSTANCE---!!!!!
 
-TODO:
+!!!!!---IMPORTANT---TODO LIST---!!!!!
+TODO: //all cleared.
 1. video.c //compiled with ffmpeg and sdl, video stream.
 1.1 how to log in native code?
 SDL_SetError(""); //try this
+//with logcat, tested ok
 1.2 how to debug with the emulator on?
+//with logcat is ok. DDMS later.
 1.3 how to send a video file?
+//adb push. ok
 1.4 how's the file system of android?
+//file located under /sdcard. ok
 
 2. asy- video and audio stream.
 3. dangon codes, syn- video and audio
 4. another Activity
+!!!!!---/IMPORTANT---/TODO LIST---!!!!!
+
+--#3.28
+what i've done today:
+1. 
+try logcat in native code. didn't work. //ok
+
+orange@orange:~/workspace/eclipseWorkspace/MediaPlayer/jni/src$ ~/workspace/android/android-sdk-linux/platform-tools/adb logcat > logcat
+
+
+2. 
+
+orange@orange:~/workspace/eclipseWorkspace/MediaPlayer/jni/src$ ~/workspace/android/android-sdk-linux/platform-tools/adb push a.mp4 /sdcard/a.mp4
+1941 KB/s (38342915 bytes in 19.289s)
+
+
+logcat with only one "video.c" tag:
+I/video.c (  740): render present done
+and window turns white, meaning previous logcats weren't sent. That is, argc >= 2, supported codec, SDL_Init success.
+Time at 8:30. make a cup of tea:)
+
+

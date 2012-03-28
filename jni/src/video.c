@@ -5,6 +5,10 @@
 #include "SDL.h"
 #include "SDL_thread.h"
 
+#include <android/log.h>
+
+#define INFO(msg) __android_log_write(ANDROID_LOG_INFO,"video.c",msg);
+
 int main(int argc, char *argv[])
 {
   AVFormatContext *pFormatCtx;
@@ -21,15 +25,14 @@ SDL_Window* window;
 SDL_Renderer* renderer;
 SDL_Texture* txt;
 void** pixels;
-int txtLocked;
 int* pitch;
 SDL_Rect        rect;
 SDL_Event       event;
 
 
   if(argc < 2) {
-    SDL_SetError("Usage: test <file>\n");
-    exit(1);
+    INFO("argc < 2");
+    return 1;
   }
 
 /*****************************************************/
@@ -59,7 +62,7 @@ SDL_Event       event;
   
   pCodec=avcodec_find_decoder(pCodecCtx->codec_id);
   if(pCodec==NULL) {
-    SDL_SetError("Unsupported codec!\n");
+    INFO("Unsupported codec!\n");
     return -1;
   }
   
@@ -77,12 +80,11 @@ SDL_Event       event;
 /*****************************************************/
   
   if(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_TIMER) < 0) {
-    SDL_SetError("Could not initialize SDL - ");
-    SDL_SetError("SDL_GetError()\n");
+    INFO("Could not initialize SDL");
     return 1;
   }
 
-//@@@@@@@@@@@@@@@@@@@@@@@@@@@
+//********** Window and Renderer **********//
 // Create the window where we will draw.
 window = SDL_CreateWindow("Texture - Window - Video",
                         SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
@@ -91,11 +93,20 @@ window = SDL_CreateWindow("Texture - Window - Video",
 
 // We must call SDL_CreateRenderer in order for draw calls to affect this window.
 renderer = SDL_CreateRenderer(window, -1, 0);
+SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+SDL_RenderClear(renderer);
+SDL_RenderPresent(renderer);
+SDL_Delay(100);
+INFO("render present done. white window");
+
+//********** texture **********//
+
 txt = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_YV12, SDL_TEXTUREACCESS_STREAMING, 128, 128);
 
 /*****************************************************/
 /* /SDL init */
 /*****************************************************/
+
 
 
 /*****************************************************/
@@ -116,15 +127,15 @@ SDL_LockTexture(txt, NULL, pixels, pitch);
 //SDL_QueryTexturePixels(txt, pixels, pitch);
 
 	AVPicture pict;
-/*
-	pict.data[0] = bmp->pixels[0];
-	pict.data[1] = bmp->pixels[2];
-	pict.data[2] = bmp->pixels[1];
 
-	pict.linesize[0] = bmp->pitches[0];
-	pict.linesize[1] = bmp->pitches[2];
-	pict.linesize[2] = bmp->pitches[1];
-*/
+	pict.data[0] = pixels[0];
+	pict.data[1] = pixels[2];
+	pict.data[2] = pixels[1];
+
+	pict.linesize[0] = pitch[0];
+	pict.linesize[1] = pitch[2];
+	pict.linesize[2] = pitch[1];
+
 
 	img_convert_ctx = sws_getContext(pCodecCtx->width, pCodecCtx->height,
  pCodecCtx->pix_fmt, pCodecCtx->width, pCodecCtx->height,
@@ -140,7 +151,7 @@ rect.y = 0;
 rect.w = pCodecCtx->width;
 rect.h = pCodecCtx->height;
 //int
-SDL_RenderCopy(renderer, txt, NULL, NULL);
+//SDL_RenderCopy(renderer, txt, NULL, NULL);
 
       
       }
@@ -164,7 +175,7 @@ SDL_RenderCopy(renderer, txt, NULL, NULL);
 /*****************************************************/
 /* /video stream */
 /*****************************************************/
-  
+
   av_free(pFrame);
   
   avcodec_close(pCodecCtx);

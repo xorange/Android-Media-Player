@@ -1,0 +1,892 @@
+D/StrictMode(  458): StrictMode policy violation; ~duration=1867 ms: android.os.StrictMode$StrictModeDiskReadViolation: policy=2711 violation=2
+D/StrictMode(  458): 	at android.os.StrictMode$AndroidBlockGuardPolicy.onReadFromDisk(StrictMode.java:1074)
+D/StrictMode(  458): 	at android.database.sqlite.SQLiteStatement.acquireAndLock(SQLiteStatement.java:228)
+D/StrictMode(  458): 	at android.database.sqlite.SQLiteStatement.simpleQueryForLong(SQLiteStatement.java:137)
+D/StrictMode(  458): 	at android.database.DatabaseUtils.longForQuery(DatabaseUtils.java:713)
+D/StrictMode(  458): 	at android.database.DatabaseUtils.longForQuery(DatabaseUtils.java:701)
+D/StrictMode(  458): 	at android.database.sqlite.SQLiteDatabase.getVersion(SQLiteDatabase.java:1239)
+D/StrictMode(  458): 	at android.database.sqlite.SQLiteOpenHelper.getWritableDatabase(SQLiteOpenHelper.java:160)
+D/StrictMode(  458): 	at android.database.sqlite.SQLiteOpenHelper.getReadableDatabase(SQLiteOpenHelper.java:231)
+D/StrictMode(  458): 	at com.android.providers.telephony.TelephonyProvider.query(TelephonyProvider.java:457)
+D/StrictMode(  458): 	at android.content.ContentProvider$Transport.query(ContentProvider.java:178)
+D/StrictMode(  458): 	at android.content.ContentResolver.query(ContentResolver.java:310)
+D/StrictMode(  458): 	at com.android.internal.telephony.gsm.GsmDataConnectionTracker.createAllApnList(GsmDataConnectionTracker.java:2095)
+D/StrictMode(  458): 	at com.android.internal.telephony.gsm.GsmDataConnectionTracker.onRecordsLoaded(GsmDataConnectionTracker.java:1660)
+D/StrictMode(  458): 	at com.android.internal.telephony.gsm.GsmDataConnectionTracker.handleMessage(GsmDataConnectionTracker.java:2316)
+D/StrictMode(  458): 	at android.os.Handler.dispatchMessage(Handler.java:99)
+D/StrictMode(  458): 	at android.os.Looper.loop(Looper.java:137)
+D/StrictMode(  458): 	at android.app.ActivityThread.main(ActivityThread.java:4340)
+D/StrictMode(  458): 	at java.lang.reflect.Method.invokeNative(Native Method)
+D/StrictMode(  458): 	at java.lang.reflect.Method.invoke(Method.java:511)
+D/StrictMode(  458): 	at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:784)
+D/StrictMode(  458): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:551)
+D/StrictMode(  458): 	at dalvik.system.NativeStart.main(Native Method)
+D/StrictMode(  458): StrictMode policy violation; ~duration=1836 ms: android.os.StrictMode$StrictModeDiskReadViolation: policy=2711 violation=2
+D/StrictMode(  458): 	at android.os.StrictMode$AndroidBlockGuardPolicy.onReadFromDisk(StrictMode.java:1074)
+D/StrictMode(  458): 	at android.database.sqlite.SQLiteDatabase.rawQueryWithFactory(SQLiteDatabase.java:1557)
+D/StrictMode(  458): 	at android.database.sqlite.SQLiteQueryBuilder.query(SQLiteQueryBuilder.java:354)
+D/StrictMode(  458): 	at android.database.sqlite.SQLiteQueryBuilder.query(SQLiteQueryBuilder.java:291)
+D/StrictMode(  458): 	at com.android.providers.telephony.TelephonyProvider.query(TelephonyProvider.java:458)
+D/StrictMode(  458): 	at android.content.ContentProvider$Transport.query(ContentProvider.java:178)
+D/StrictMode(  458): 	at android.content.ContentResolver.query(ContentResolver.java:310)
+D/StrictMode(  458): 	at com.android.internal.telephony.gsm.GsmDataConnectionTracker.createAllApnList(GsmDataConnectionTracker.java:2095)
+D/StrictMode(  458): 	at com.android.internal.telephony.gsm.GsmDataConnectionTracker.onRecordsLoaded(GsmDataConnectionTracker.java:1660)
+D/StrictMode(  458): 	at com.android.internal.telephony.gsm.GsmDataConnectionTracker.handleMessage(GsmDataConnectionTracker.java:2316)
+D/StrictMode(  458): 	at android.os.Handler.dispatchMessage(Handler.java:99)
+D/StrictMode(  458): 	at android.os.Looper.loop(Looper.java:137)
+D/StrictMode(  458): 	at android.app.ActivityThread.main(ActivityThread.java:4340)
+D/StrictMode(  458): 	at java.lang.reflect.Method.invokeNative(Native Method)
+D/StrictMode(  458): 	at java.lang.reflect.Method.invoke(Method.java:511)
+D/StrictMode(  458): 	at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:784)
+D/StrictMode(  458): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:551)
+D/StrictMode(  458): 	at dalvik.system.NativeStart.main(Native Method)
+D/dalvikvm(  378): GC_CONCURRENT freed 579K, 6% free 12514K/13191K, paused 6ms+43ms
+D/StrictMode(  458): StrictMode policy violation; ~duration=1710 ms: android.os.StrictMode$StrictModeDiskReadViolation: policy=2711 violation=2
+D/StrictMode(  458): 	at android.os.StrictMode$AndroidBlockGuardPolicy.onReadFromDisk(StrictMode.java:1074)
+D/StrictMode(  458): 	at android.database.sqlite.SQLiteDatabase.rawQueryWithFactory(SQLiteDatabase.java:1557)
+D/StrictMode(  458): 	at android.database.sqlite.SQLiteQueryBuilder.query(SQLiteQueryBuilder.java:354)
+D/StrictMode(  458): 	at android.database.sqlite.SQLiteQueryBuilder.query(SQLiteQueryBuilder.java:291)
+D/StrictMode(  458): 	at com.android.providers.telephony.TelephonyProvider.query(TelephonyProvider.java:458)
+D/StrictMode(  458): 	at android.content.ContentProvider$Transport.query(ContentProvider.java:178)
+D/StrictMode(  458): 	at android.content.ContentResolver.query(ContentResolver.java:310)
+D/StrictMode(  458): 	at com.android.internal.telephony.gsm.GsmDataConnectionTracker.getPreferredApn(GsmDataConnectionTracker.java:2276)
+D/StrictMode(  458): 	at com.android.internal.telephony.gsm.GsmDataConnectionTracker.createAllApnList(GsmDataConnectionTracker.java:2112)
+D/StrictMode(  458): 	at com.android.internal.telephony.gsm.GsmDataConnectionTracker.onRecordsLoaded(GsmDataConnectionTracker.java:1660)
+D/StrictMode(  458): 	at com.android.internal.telephony.gsm.GsmDataConnectionTracker.handleMessage(GsmDataConnectionTracker.java:2316)
+D/StrictMode(  458): 	at android.os.Handler.dispatchMessage(Handler.java:99)
+D/StrictMode(  458): 	at android.os.Looper.loop(Looper.java:137)
+D/StrictMode(  458): 	at android.app.ActivityThread.main(ActivityThread.java:4340)
+D/StrictMode(  458): 	at java.lang.reflect.Method.invokeNative(Native Method)
+D/StrictMode(  458): 	at java.lang.reflect.Method.invoke(Method.java:511)
+D/StrictMode(  458): 	at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:784)
+D/StrictMode(  458): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:551)
+D/StrictMode(  458): 	at dalvik.system.NativeStart.main(Native Method)
+D/StrictMode(  458): StrictMode policy violation; ~duration=854 ms: android.os.StrictMode$StrictModeDiskWriteViolation: policy=2711 violation=1
+D/StrictMode(  458): 	at android.os.StrictMode$AndroidBlockGuardPolicy.onWriteToDisk(StrictMode.java:1048)
+D/StrictMode(  458): 	at android.database.sqlite.SQLiteStatement.acquireAndLock(SQLiteStatement.java:226)
+D/StrictMode(  458): 	at android.database.sqlite.SQLiteStatement.executeUpdateDelete(SQLiteStatement.java:84)
+D/StrictMode(  458): 	at android.database.sqlite.SQLiteDatabase.updateWithOnConflict(SQLiteDatabase.java:1810)
+D/StrictMode(  458): 	at android.database.sqlite.SQLiteDatabase.update(SQLiteDatabase.java:1761)
+D/StrictMode(  458): 	at com.android.providers.telephony.TelephonyProvider.insert(TelephonyProvider.java:561)
+D/StrictMode(  458): 	at android.content.ContentProvider$Transport.insert(ContentProvider.java:189)
+D/StrictMode(  458): 	at android.content.ContentResolver.insert(ContentResolver.java:729)
+D/StrictMode(  458): 	at com.android.internal.telephony.gsm.GSMPhone.updateCurrentCarrierInProvider(GSMPhone.java:1328)
+D/StrictMode(  458): 	at com.android.internal.telephony.gsm.GSMPhone.handleMessage(GSMPhone.java:1179)
+D/StrictMode(  458): 	at android.os.Handler.dispatchMessage(Handler.java:99)
+D/StrictMode(  458): 	at android.os.Looper.loop(Looper.java:137)
+D/StrictMode(  458): 	at android.app.ActivityThread.main(ActivityThread.java:4340)
+D/StrictMode(  458): 	at java.lang.reflect.Method.invokeNative(Native Method)
+D/StrictMode(  458): 	at java.lang.reflect.Method.invoke(Method.java:511)
+D/StrictMode(  458): 	at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:784)
+D/StrictMode(  458): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:551)
+D/StrictMode(  458): 	at dalvik.system.NativeStart.main(Native Method)
+D/StrictMode(  458): StrictMode policy violation; ~duration=761 ms: android.os.StrictMode$StrictModeDiskWriteViolation: policy=2711 violation=1
+D/StrictMode(  458): 	at android.os.StrictMode$AndroidBlockGuardPolicy.onWriteToDisk(StrictMode.java:1048)
+D/StrictMode(  458): 	at android.database.sqlite.SQLiteStatement.acquireAndLock(SQLiteStatement.java:226)
+D/StrictMode(  458): 	at android.database.sqlite.SQLiteStatement.executeUpdateDelete(SQLiteStatement.java:84)
+D/StrictMode(  458): 	at android.database.sqlite.SQLiteDatabase.executeSql(SQLiteDatabase.java:1899)
+D/StrictMode(  458): 	at android.database.sqlite.SQLiteDatabase.execSQL(SQLiteDatabase.java:1839)
+D/StrictMode(  458): 	at android.database.sqlite.SQLiteDatabase.beginTransaction(SQLiteDatabase.java:661)
+D/StrictMode(  458): 	at android.database.sqlite.SQLiteDatabase.beginTransactionNonExclusive(SQLiteDatabase.java:576)
+D/StrictMode(  458): 	at android.database.sqlite.SQLiteStatement.acquireAndLock(SQLiteStatement.java:247)
+D/StrictMode(  458): 	at android.database.sqlite.SQLiteStatement.executeUpdateDelete(SQLiteStatement.java:84)
+D/StrictMode(  458): 	at android.database.sqlite.SQLiteDatabase.updateWithOnConflict(SQLiteDatabase.java:1810)
+D/StrictMode(  458): 	at android.database.sqlite.SQLiteDatabase.update(SQLiteDatabase.java:1761)
+D/StrictMode(  458): 	at com.android.providers.telephony.TelephonyProvider.insert(TelephonyProvider.java:561)
+D/StrictMode(  458): 	at android.content.ContentProvider$Transport.insert(ContentProvider.java:189)
+D/StrictMode(  458): 	at android.content.ContentResolver.insert(ContentResolver.java:729)
+D/StrictMode(  458): 	at com.android.internal.telephony.gsm.GSMPhone.updateCurrentCarrierInProvider(GSMPhone.java:1328)
+D/StrictMode(  458): 	at com.android.internal.telephony.gsm.GSMPhone.handleMessage(GSMPhone.java:1179)
+D/StrictMode(  458): 	at android.os.Handler.dispatchMessage(Handler.java:99)
+D/StrictMode(  458): 	at android.os.Looper.loop(Looper.java:137)
+D/StrictMode(  458): 	at android.app.ActivityThread.main(ActivityThread.java:4340)
+D/StrictMode(  458): 	at java.lang.reflect.Method.invokeNative(Native Method)
+D/StrictMode(  458): 	at java.lang.reflect.Method.invoke(Method.java:511)
+D/StrictMode(  458): 	at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:784)
+D/StrictMode(  458): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:551)
+D/StrictMode(  458): 	at dalvik.system.NativeStart.main(Native Method)
+D/StrictMode(  458): StrictMode policy violation; ~duration=428 ms: android.os.StrictMode$StrictModeDiskWriteViolation: policy=2711 violation=1
+D/StrictMode(  458): 	at android.os.StrictMode$AndroidBlockGuardPolicy.onWriteToDisk(StrictMode.java:1048)
+D/StrictMode(  458): 	at android.database.sqlite.SQLiteStatement.acquireAndLock(SQLiteStatement.java:226)
+D/StrictMode(  458): 	at android.database.sqlite.SQLiteStatement.executeUpdateDelete(SQLiteStatement.java:84)
+D/StrictMode(  458): 	at android.database.sqlite.SQLiteDatabase.executeSql(SQLiteDatabase.java:1899)
+D/StrictMode(  458): 	at android.database.sqlite.SQLiteDatabase.execSQL(SQLiteDatabase.java:1839)
+D/StrictMode(  458): 	at android.database.sqlite.SQLiteDatabase.endTransaction(SQLiteDatabase.java:714)
+D/StrictMode(  458): 	at android.database.sqlite.SQLiteStatement.releaseAndUnlock(SQLiteStatement.java:273)
+D/StrictMode(  458): 	at android.database.sqlite.SQLiteStatement.executeUpdateDelete(SQLiteStatement.java:96)
+D/StrictMode(  458): 	at android.database.sqlite.SQLiteDatabase.updateWithOnConflict(SQLiteDatabase.java:1810)
+D/StrictMode(  458): 	at android.database.sqlite.SQLiteDatabase.update(SQLiteDatabase.java:1761)
+D/StrictMode(  458): 	at com.android.providers.telephony.TelephonyProvider.insert(TelephonyProvider.java:561)
+D/StrictMode(  458): 	at android.content.ContentProvider$Transport.insert(ContentProvider.java:189)
+D/StrictMode(  458): 	at android.content.ContentResolver.insert(ContentResolver.java:729)
+D/StrictMode(  458): 	at com.android.internal.telephony.gsm.GSMPhone.updateCurrentCarrierInProvider(GSMPhone.java:1328)
+D/StrictMode(  458): 	at com.android.internal.telephony.gsm.GSMPhone.handleMessage(GSMPhone.java:1179)
+D/StrictMode(  458): 	at android.os.Handler.dispatchMessage(Handler.java:99)
+D/StrictMode(  458): 	at android.os.Looper.loop(Looper.java:137)
+D/StrictMode(  458): 	at android.app.ActivityThread.main(ActivityThread.java:4340)
+D/StrictMode(  458): 	at java.lang.reflect.Method.invokeNative(Native Method)
+D/StrictMode(  458): 	at java.lang.reflect.Method.invoke(Method.java:511)
+D/StrictMode(  458): 	at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:784)
+D/StrictMode(  458): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:551)
+D/StrictMode(  458): 	at dalvik.system.NativeStart.main(Native Method)
+D/StrictMode(  458): StrictMode policy violation; ~duration=316 ms: android.os.StrictMode$StrictModeDiskWriteViolation: policy=2711 violation=1
+D/StrictMode(  458): 	at android.os.StrictMode$AndroidBlockGuardPolicy.onWriteToDisk(StrictMode.java:1048)
+D/StrictMode(  458): 	at android.database.sqlite.SQLiteStatement.acquireAndLock(SQLiteStatement.java:226)
+D/StrictMode(  458): 	at android.database.sqlite.SQLiteStatement.executeUpdateDelete(SQLiteStatement.java:84)
+D/StrictMode(  458): 	at android.database.sqlite.SQLiteDatabase.updateWithOnConflict(SQLiteDatabase.java:1810)
+D/StrictMode(  458): 	at android.database.sqlite.SQLiteDatabase.update(SQLiteDatabase.java:1761)
+D/StrictMode(  458): 	at com.android.providers.telephony.TelephonyProvider.insert(TelephonyProvider.java:564)
+D/StrictMode(  458): 	at android.content.ContentProvider$Transport.insert(ContentProvider.java:189)
+D/StrictMode(  458): 	at android.content.ContentResolver.insert(ContentResolver.java:729)
+D/StrictMode(  458): 	at com.android.internal.telephony.gsm.GSMPhone.updateCurrentCarrierInProvider(GSMPhone.java:1328)
+D/StrictMode(  458): 	at com.android.internal.telephony.gsm.GSMPhone.handleMessage(GSMPhone.java:1179)
+D/StrictMode(  458): 	at android.os.Handler.dispatchMessage(Handler.java:99)
+D/StrictMode(  458): 	at android.os.Looper.loop(Looper.java:137)
+D/StrictMode(  458): 	at android.app.ActivityThread.main(ActivityThread.java:4340)
+D/StrictMode(  458): 	at java.lang.reflect.Method.invokeNative(Native Method)
+D/StrictMode(  458): 	at java.lang.reflect.Method.invoke(Method.java:511)
+D/StrictMode(  458): 	at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:784)
+D/StrictMode(  458): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:551)
+D/StrictMode(  458): 	at dalvik.system.NativeStart.main(Native Method)
+D/dalvikvm(  476): GC_CONCURRENT freed 385K, 5% free 10745K/11271K, paused 4ms+19ms
+D/dalvikvm(  378): GC_FOR_ALLOC freed 227K, 6% free 12577K/13319K, paused 314ms
+I/ActivityThread(  585): Pub com.android.calendar: com.android.providers.calendar.CalendarProvider2
+D/StrictMode(  458): StrictMode policy violation; ~duration=154 ms: android.os.StrictMode$StrictModeDiskWriteViolation: policy=2711 violation=1
+D/StrictMode(  458): 	at android.os.StrictMode$AndroidBlockGuardPolicy.onWriteToDisk(StrictMode.java:1048)
+D/StrictMode(  458): 	at android.database.sqlite.SQLiteStatement.acquireAndLock(SQLiteStatement.java:226)
+D/StrictMode(  458): 	at android.database.sqlite.SQLiteStatement.executeUpdateDelete(SQLiteStatement.java:84)
+D/StrictMode(  458): 	at android.database.sqlite.SQLiteDatabase.executeSql(SQLiteDatabase.java:1899)
+D/StrictMode(  458): 	at android.database.sqlite.SQLiteDatabase.execSQL(SQLiteDatabase.java:1839)
+D/StrictMode(  458): 	at android.database.sqlite.SQLiteDatabase.beginTransaction(SQLiteDatabase.java:661)
+D/StrictMode(  458): 	at android.database.sqlite.SQLiteDatabase.beginTransactionNonExclusive(SQLiteDatabase.java:576)
+D/StrictMode(  458): 	at android.database.sqlite.SQLiteStatement.acquireAndLock(SQLiteStatement.java:247)
+D/StrictMode(  458): 	at android.database.sqlite.SQLiteStatement.executeUpdateDelete(SQLiteStatement.java:84)
+D/StrictMode(  458): 	at android.database.sqlite.SQLiteDatabase.updateWithOnConflict(SQLiteDatabase.java:1810)
+D/StrictMode(  458): 	at android.database.sqlite.SQLiteDatabase.update(SQLiteDatabase.java:1761)
+D/StrictMode(  458): 	at com.android.providers.telephony.TelephonyProvider.insert(TelephonyProvider.java:564)
+D/StrictMode(  458): 	at android.content.ContentProvider$Transport.insert(ContentProvider.java:189)
+D/StrictMode(  458): 	at android.content.ContentResolver.insert(ContentResolver.java:729)
+D/StrictMode(  458): 	at com.android.internal.telephony.gsm.GSMPhone.updateCurrentCarrierInProvider(GSMPhone.java:1328)
+D/StrictMode(  458): 	at com.android.internal.telephony.gsm.GSMPhone.handleMessage(GSMPhone.java:1179)
+D/StrictMode(  458): 	at android.os.Handler.dispatchMessage(Handler.java:99)
+D/StrictMode(  458): 	at android.os.Looper.loop(Looper.java:137)
+D/StrictMode(  458): 	at android.app.ActivityThread.main(ActivityThread.java:4340)
+D/StrictMode(  458): 	at java.lang.reflect.Method.invokeNative(Native Method)
+D/StrictMode(  458): 	at java.lang.reflect.Method.invoke(Method.java:511)
+D/StrictMode(  458): 	at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:784)
+D/StrictMode(  458): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:551)
+D/StrictMode(  458): 	at dalvik.system.NativeStart.main(Native Method)
+D/ConnectivityService(  378): ConnectivityChange for mobile: CONNECTED/CONNECTED
+I/ActivityManager(  378): Start proc android.process.media for content provider com.android.providers.downloads/.DownloadProvider: pid=601 uid=10008 gids={1015, 1023, 1024, 1006, 2001, 3003, 3007}
+D/dalvikvm(  367): GC_EXPLICIT freed 34K, 4% free 9848K/10179K, paused 42ms+107ms
+F/NetworkStats(  378): problem reading network stats
+F/NetworkStats(  378): java.lang.IllegalStateException: problem parsing line: null
+F/NetworkStats(  378): 	at com.android.internal.net.NetworkStatsFactory.readNetworkStatsDetail(NetworkStatsFactory.java:313)
+F/NetworkStats(  378): 	at com.android.server.NetworkManagementService.getNetworkStatsUidDetail(NetworkManagementService.java:1271)
+F/NetworkStats(  378): 	at com.android.server.net.NetworkStatsService.performPollLocked(NetworkStatsService.java:810)
+F/NetworkStats(  378): 	at com.android.server.net.NetworkStatsService.updateIfacesLocked(NetworkStatsService.java:721)
+F/NetworkStats(  378): 	at com.android.server.net.NetworkStatsService.updateIfaces(NetworkStatsService.java:699)
+F/NetworkStats(  378): 	at com.android.server.net.NetworkStatsService.access$000(NetworkStatsService.java:128)
+F/NetworkStats(  378): 	at com.android.server.net.NetworkStatsService$1.onReceive(NetworkStatsService.java:589)
+F/NetworkStats(  378): 	at android.app.LoadedApk$ReceiverDispatcher$Args.run(LoadedApk.java:728)
+F/NetworkStats(  378): 	at android.os.Handler.handleCallback(Handler.java:605)
+F/NetworkStats(  378): 	at android.os.Handler.dispatchMessage(Handler.java:92)
+F/NetworkStats(  378): 	at android.os.Looper.loop(Looper.java:137)
+F/NetworkStats(  378): 	at android.os.HandlerThread.run(HandlerThread.java:60)
+F/NetworkStats(  378): Caused by: java.io.FileNotFoundException: /proc/net/xt_qtaguid/stats: open failed: ENOENT (No such file or directory)
+F/NetworkStats(  378): 	at libcore.io.IoBridge.open(IoBridge.java:406)
+F/NetworkStats(  378): 	at java.io.FileInputStream.<init>(FileInputStream.java:78)
+F/NetworkStats(  378): 	at java.io.FileReader.<init>(FileReader.java:42)
+F/NetworkStats(  378): 	at com.android.internal.net.NetworkStatsFactory.readNetworkStatsDetail(NetworkStatsFactory.java:272)
+F/NetworkStats(  378): 	... 11 more
+F/NetworkStats(  378): Caused by: libcore.io.ErrnoException: open failed: ENOENT (No such file or directory)
+F/NetworkStats(  378): 	at libcore.io.Posix.open(Native Method)
+F/NetworkStats(  378): 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:98)
+F/NetworkStats(  378): 	at libcore.io.IoBridge.open(IoBridge.java:390)
+F/NetworkStats(  378): 	... 14 more
+W/WindowManager(  378): App freeze timeout expired.
+W/WindowManager(  378): Force clearing freeze: AppWindowToken{414fcd48 token=ActivityRecord{414c97b0 com.android.launcher/com.android.launcher2.Launcher}}
+D/Launcher.Model(  476): Reload apps on config change. curr_mcc:310 prevmcc:0
+W/dalvikvm(  561): threadid=5: spin on suspend #1 threadid=2 (pcf=0)
+D/dalvikvm(  561): Temporarily moving tid 563 to fg (was 0)
+D/dalvikvm(  367): GC_EXPLICIT freed <1K, 4% free 9848K/10179K, paused 24ms+17ms
+D/NetworkPolicy(  378): applying policy NetworkPolicy[NetworkTemplate: matchRule=MOBILE_ALL, subscriberId=310260000000000]: cycleDay=27, warningBytes=2147483648, limitBytes=-1, lastSnooze=-1 to ifaces [eth0]
+I/ActivityThread(  601): Pub media: com.android.providers.media.MediaProvider
+W/dalvikvm(  561): threadid=5: spin on suspend resolved in 1867 msec
+D/dalvikvm(  561): Restored policy of 563 to 0
+D/dalvikvm(  367): GC_EXPLICIT freed <1K, 4% free 9848K/10179K, paused 55ms+39ms
+D/StrictMode(  585): StrictMode policy violation; ~duration=808 ms: android.os.StrictMode$StrictModeDiskWriteViolation: policy=2711 violation=1
+D/StrictMode(  585): 	at android.os.StrictMode$AndroidBlockGuardPolicy.onWriteToDisk(StrictMode.java:1048)
+D/StrictMode(  585): 	at android.database.sqlite.SQLiteStatement.acquireAndLock(SQLiteStatement.java:226)
+D/StrictMode(  585): 	at android.database.sqlite.SQLiteStatement.executeUpdateDelete(SQLiteStatement.java:84)
+D/StrictMode(  585): 	at android.database.sqlite.SQLiteDatabase.executeSql(SQLiteDatabase.java:1899)
+D/StrictMode(  585): 	at android.database.sqlite.SQLiteDatabase.execSQL(SQLiteDatabase.java:1839)
+D/StrictMode(  585): 	at android.database.sqlite.SQLiteDatabase.setPageSize(SQLiteDatabase.java:1297)
+D/StrictMode(  585): 	at android.database.sqlite.SQLiteDatabase.openDatabase(SQLiteDatabase.java:995)
+D/StrictMode(  585): 	at android.database.sqlite.SQLiteDatabase.openOrCreateDatabase(SQLiteDatabase.java:1051)
+D/StrictMode(  585): 	at android.app.ContextImpl.openOrCreateDatabase(ContextImpl.java:770)
+D/StrictMode(  585): 	at android.content.ContextWrapper.openOrCreateDatabase(ContextWrapper.java:221)
+D/StrictMode(  585): 	at android.database.sqlite.SQLiteOpenHelper.getWritableDatabase(SQLiteOpenHelper.java:157)
+D/StrictMode(  585): 	at com.android.providers.calendar.CalendarDatabaseHelper.getWritableDatabase(CalendarDatabaseHelper.java:2735)
+D/StrictMode(  585): 	at com.android.providers.calendar.CalendarProvider2.initialize(CalendarProvider2.java:476)
+D/StrictMode(  585): 	at com.android.providers.calendar.CalendarProvider2.onCreate(CalendarProvider2.java:460)
+D/StrictMode(  585): 	at android.content.ContentProvider.attachInfo(ContentProvider.java:944)
+D/StrictMode(  585): 	at android.app.ActivityThread.installProvider(ActivityThread.java:4198)
+D/StrictMode(  585): 	at android.app.ActivityThread.installContentProviders(ActivityThread.java:3963)
+D/StrictMode(  585): 	at android.app.ActivityThread.handleBindApplication(ActivityThread.java:3917)
+D/StrictMode(  585): 	at android.app.ActivityThread.access$1300(ActivityThread.java:122)
+D/StrictMode(  585): 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1184)
+D/StrictMode(  585): 	at android.os.Handler.dispatchMessage(Handler.java:99)
+D/StrictMode(  585): 	at android.os.Looper.loop(Looper.java:137)
+D/StrictMode(  585): 	at android.app.ActivityThread.main(ActivityThread.java:4340)
+D/StrictMode(  585): 	at java.lang.reflect.Method.invokeNative(Native Method)
+D/StrictMode(  585): 	at java.lang.reflect.Method.invoke(Method.java:511)
+D/StrictMode(  585): 	at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:784)
+D/StrictMode(  585): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:551)
+D/StrictMode(  585): 	at dalvik.system.NativeStart.main(Native Method)
+I/ActivityManager(  378): Start proc com.android.deskclock for broadcast com.android.deskclock/.AlarmInitReceiver: pid=618 uid=10013 gids={}
+I/WindowManager(  378): createSurface Window{416396d0 com.android.launcher/com.android.launcher2.Launcher paused=false}: DRAW NOW PENDING
+D/gralloc_goldfish(  476): Emulator without GPU emulation detected.
+D/StrictMode(  585): StrictMode policy violation; ~duration=700 ms: android.os.StrictMode$StrictModeDiskReadViolation: policy=2711 violation=2
+D/StrictMode(  585): 	at android.os.StrictMode$AndroidBlockGuardPolicy.onReadFromDisk(StrictMode.java:1074)
+D/StrictMode(  585): 	at android.database.sqlite.SQLiteStatement.acquireAndLock(SQLiteStatement.java:228)
+D/StrictMode(  585): 	at android.database.sqlite.SQLiteStatement.simpleQueryForString(SQLiteStatement.java:160)
+D/StrictMode(  585): 	at android.database.DatabaseUtils.stringForQuery(DatabaseUtils.java:735)
+D/StrictMode(  585): 	at android.database.DatabaseUtils.stringForQuery(DatabaseUtils.java:723)
+D/StrictMode(  585): 	at android.database.sqlite.SQLiteDatabase.setJournalMode(SQLiteDatabase.java:1060)
+D/StrictMode(  585): 	at android.database.sqlite.SQLiteDatabase.openDatabase(SQLiteDatabase.java:996)
+D/StrictMode(  585): 	at android.database.sqlite.SQLiteDatabase.openOrCreateDatabase(SQLiteDatabase.java:1051)
+D/StrictMode(  585): 	at android.app.ContextImpl.openOrCreateDatabase(ContextImpl.java:770)
+D/StrictMode(  585): 	at android.content.ContextWrapper.openOrCreateDatabase(ContextWrapper.java:221)
+D/StrictMode(  585): 	at android.database.sqlite.SQLiteOpenHelper.getWritableDatabase(SQLiteOpenHelper.java:157)
+D/StrictMode(  585): 	at com.android.providers.calendar.CalendarDatabaseHelper.getWritableDatabase(CalendarDatabaseHelper.java:2735)
+D/StrictMode(  585): 	at com.android.providers.calendar.CalendarProvider2.initialize(CalendarProvider2.java:476)
+D/StrictMode(  585): 	at com.android.providers.calendar.CalendarProvider2.onCreate(CalendarProvider2.java:460)
+D/StrictMode(  585): 	at android.content.ContentProvider.attachInfo(ContentProvider.java:944)
+D/StrictMode(  585): 	at android.app.ActivityThread.installProvider(ActivityThread.java:4198)
+D/StrictMode(  585): 	at android.app.ActivityThread.installContentProviders(ActivityThread.java:3963)
+D/StrictMode(  585): 	at android.app.ActivityThread.handleBindApplication(ActivityThread.java:3917)
+D/StrictMode(  585): 	at android.app.ActivityThread.access$1300(ActivityThread.java:122)
+D/StrictMode(  585): 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1184)
+D/StrictMode(  585): 	at android.os.Handler.dispatchMessage(Handler.java:99)
+D/StrictMode(  585): 	at android.os.Looper.loop(Looper.java:137)
+D/StrictMode(  585): 	at android.app.ActivityThread.main(ActivityThread.java:4340)
+D/StrictMode(  585): 	at java.lang.reflect.Method.invokeNative(Native Method)
+D/StrictMode(  585): 	at java.lang.reflect.Method.invoke(Method.java:511)
+D/StrictMode(  585): 	at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:784)
+D/StrictMode(  585): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:551)
+D/StrictMode(  585): 	at dalvik.system.NativeStart.main(Native Method)
+W/TextLayoutCache(  476): computeValuesWithHarfbuzz -- need to force to single run
+D/Tethering(  378): Tethering got CONNECTIVITY_ACTION
+D/Tethering(  378): MasterInitialState.processMessage what=3
+I/ActivityThread(  618): Pub com.android.deskclock: com.android.deskclock.AlarmProvider
+D/dalvikvm(  378): GC_EXPLICIT freed 468K, 7% free 12461K/13319K, paused 5ms+28ms
+D/dalvikvm(  601): GC_CONCURRENT freed 353K, 5% free 9952K/10439K, paused 4ms+4ms
+I/ActivityThread(  601): Pub downloads: com.android.providers.downloads.DownloadProvider
+I/ActivityThread(  601): Pub drm: com.android.providers.drm.DrmProvider
+I/DownloadManager(  601): in removeSpuriousFiles
+D/StrictMode(  601): StrictMode policy violation; ~duration=1708 ms: android.os.StrictMode$StrictModeDiskWriteViolation: policy=2711 violation=1
+D/StrictMode(  601): 	at android.os.StrictMode$AndroidBlockGuardPolicy.onWriteToDisk(StrictMode.java:1048)
+D/StrictMode(  601): 	at android.database.sqlite.SQLiteStatement.acquireAndLock(SQLiteStatement.java:226)
+D/StrictMode(  601): 	at android.database.sqlite.SQLiteStatement.executeUpdateDelete(SQLiteStatement.java:84)
+D/StrictMode(  601): 	at android.database.sqlite.SQLiteDatabase.executeSql(SQLiteDatabase.java:1899)
+D/StrictMode(  601): 	at android.database.sqlite.SQLiteDatabase.execSQL(SQLiteDatabase.java:1839)
+D/StrictMode(  601): 	at android.database.sqlite.SQLiteDatabase.setPageSize(SQLiteDatabase.java:1297)
+D/StrictMode(  601): 	at android.database.sqlite.SQLiteDatabase.openDatabase(SQLiteDatabase.java:995)
+D/StrictMode(  601): 	at android.database.sqlite.SQLiteDatabase.openOrCreateDatabase(SQLiteDatabase.java:1051)
+D/StrictMode(  601): 	at android.app.ContextImpl.openOrCreateDatabase(ContextImpl.java:770)
+D/StrictMode(  601): 	at android.database.sqlite.SQLiteOpenHelper.getWritableDatabase(SQLiteOpenHelper.java:157)
+D/StrictMode(  601): 	at com.android.providers.media.MediaProvider$DatabaseHelper.getWritableDatabase(MediaProvider.java:310)
+D/StrictMode(  601): 	at com.android.providers.media.MediaProvider.attachVolume(MediaProvider.java:4373)
+D/StrictMode(  601): 	at com.android.providers.media.MediaProvider.onCreate(MediaProvider.java:503)
+D/StrictMode(  601): 	at android.content.ContentProvider.attachInfo(ContentProvider.java:944)
+D/StrictMode(  601): 	at android.app.ActivityThread.installProvider(ActivityThread.java:4198)
+D/StrictMode(  601): 	at android.app.ActivityThread.installContentProviders(ActivityThread.java:3963)
+D/StrictMode(  601): 	at android.app.ActivityThread.handleBindApplication(ActivityThread.java:3917)
+D/StrictMode(  601): 	at android.app.ActivityThread.access$1300(ActivityThread.java:122)
+D/StrictMode(  601): 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1184)
+D/StrictMode(  601): 	at android.os.Handler.dispatchMessage(Handler.java:99)
+D/StrictMode(  601): 	at android.os.Looper.loop(Looper.java:137)
+D/StrictMode(  601): 	at android.app.ActivityThread.main(ActivityThread.java:4340)
+D/StrictMode(  601): 	at java.lang.reflect.Method.invokeNative(Native Method)
+D/StrictMode(  601): 	at java.lang.reflect.Method.invoke(Method.java:511)
+D/StrictMode(  601): 	at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:784)
+D/StrictMode(  601): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:551)
+D/StrictMode(  601): 	at dalvik.system.NativeStart.main(Native Method)
+D/StrictMode(  601): StrictMode policy violation; ~duration=1598 ms: android.os.StrictMode$StrictModeDiskReadViolation: policy=2711 violation=2
+D/StrictMode(  601): 	at android.os.StrictMode$AndroidBlockGuardPolicy.onReadFromDisk(StrictMode.java:1074)
+D/StrictMode(  601): 	at android.database.sqlite.SQLiteStatement.acquireAndLock(SQLiteStatement.java:228)
+D/StrictMode(  601): 	at android.database.sqlite.SQLiteStatement.simpleQueryForString(SQLiteStatement.java:160)
+D/StrictMode(  601): 	at android.database.DatabaseUtils.stringForQuery(DatabaseUtils.java:735)
+D/StrictMode(  601): 	at android.database.DatabaseUtils.stringForQuery(DatabaseUtils.java:723)
+D/StrictMode(  601): 	at android.database.sqlite.SQLiteDatabase.setJournalMode(SQLiteDatabase.java:1060)
+D/StrictMode(  601): 	at android.database.sqlite.SQLiteDatabase.openDatabase(SQLiteDatabase.java:996)
+D/StrictMode(  601): 	at android.database.sqlite.SQLiteDatabase.openOrCreateDatabase(SQLiteDatabase.java:1051)
+D/StrictMode(  601): 	at android.app.ContextImpl.openOrCreateDatabase(ContextImpl.java:770)
+D/StrictMode(  601): 	at android.database.sqlite.SQLiteOpenHelper.getWritableDatabase(SQLiteOpenHelper.java:157)
+D/StrictMode(  601): 	at com.android.providers.media.MediaProvider$DatabaseHelper.getWritableDatabase(MediaProvider.java:310)
+D/StrictMode(  601): 	at com.android.providers.media.MediaProvider.attachVolume(MediaProvider.java:4373)
+D/StrictMode(  601): 	at com.android.providers.media.MediaProvider.onCreate(MediaProvider.java:503)
+D/StrictMode(  601): 	at android.content.ContentProvider.attachInfo(ContentProvider.java:944)
+D/StrictMode(  601): 	at android.app.ActivityThread.installProvider(ActivityThread.java:4198)
+D/StrictMode(  601): 	at android.app.ActivityThread.installContentProviders(ActivityThread.java:3963)
+D/StrictMode(  601): 	at android.app.ActivityThread.handleBindApplication(ActivityThread.java:3917)
+D/StrictMode(  601): 	at android.app.ActivityThread.access$1300(ActivityThread.java:122)
+D/StrictMode(  601): 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1184)
+D/StrictMode(  601): 	at android.os.Handler.dispatchMessage(Handler.java:99)
+D/StrictMode(  601): 	at android.os.Looper.loop(Looper.java:137)
+D/StrictMode(  601): 	at android.app.ActivityThread.main(ActivityThread.java:4340)
+D/StrictMode(  601): 	at java.lang.reflect.Method.invokeNative(Native Method)
+D/StrictMode(  601): 	at java.lang.reflect.Method.invoke(Method.java:511)
+D/StrictMode(  601): 	at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:784)
+D/StrictMode(  601): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:551)
+D/StrictMode(  601): 	at dalvik.system.NativeStart.main(Native Method)
+D/StrictMode(  601): StrictMode policy violation; ~duration=1377 ms: android.os.StrictMode$StrictModeDiskReadViolation: policy=2711 violation=2
+D/StrictMode(  601): 	at android.os.StrictMode$AndroidBlockGuardPolicy.onReadFromDisk(StrictMode.java:1074)
+D/StrictMode(  601): 	at android.database.sqlite.SQLiteStatement.acquireAndLock(SQLiteStatement.java:228)
+D/StrictMode(  601): 	at android.database.sqlite.SQLiteStatement.simpleQueryForLong(SQLiteStatement.java:137)
+D/StrictMode(  601): 	at android.database.DatabaseUtils.longForQuery(DatabaseUtils.java:713)
+D/StrictMode(  601): 	at android.database.DatabaseUtils.longForQuery(DatabaseUtils.java:701)
+D/StrictMode(  601): 	at android.database.sqlite.SQLiteDatabase.getVersion(SQLiteDatabase.java:1239)
+D/StrictMode(  601): 	at android.database.sqlite.SQLiteOpenHelper.getWritableDatabase(SQLiteOpenHelper.java:160)
+D/StrictMode(  601): 	at com.android.providers.media.MediaProvider$DatabaseHelper.getWritableDatabase(MediaProvider.java:310)
+D/StrictMode(  601): 	at com.android.providers.media.MediaProvider.attachVolume(MediaProvider.java:4373)
+D/StrictMode(  601): 	at com.android.providers.media.MediaProvider.onCreate(MediaProvider.java:503)
+D/StrictMode(  601): 	at android.content.ContentProvider.attachInfo(ContentProvider.java:944)
+D/StrictMode(  601): 	at android.app.ActivityThread.installProvider(ActivityThread.java:4198)
+D/StrictMode(  601): 	at android.app.ActivityThread.installContentProviders(ActivityThread.java:3963)
+D/StrictMode(  601): 	at android.app.ActivityThread.handleBindApplication(ActivityThread.java:3917)
+D/StrictMode(  601): 	at android.app.ActivityThread.access$1300(ActivityThread.java:122)
+D/StrictMode(  601): 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1184)
+D/StrictMode(  601): 	at android.os.Handler.dispatchMessage(Handler.java:99)
+D/StrictMode(  601): 	at android.os.Looper.loop(Looper.java:137)
+D/StrictMode(  601): 	at android.app.ActivityThread.main(ActivityThread.java:4340)
+D/StrictMode(  601): 	at java.lang.reflect.Method.invokeNative(Native Method)
+D/StrictMode(  601): 	at java.lang.reflect.Method.invoke(Method.java:511)
+D/StrictMode(  601): 	at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:784)
+D/StrictMode(  601): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:551)
+D/StrictMode(  601): 	at dalvik.system.NativeStart.main(Native Method)
+D/StrictMode(  601): StrictMode policy violation; ~duration=1308 ms: android.os.StrictMode$StrictModeDiskReadViolation: policy=2711 violation=2
+D/StrictMode(  601): 	at android.os.StrictMode$AndroidBlockGuardPolicy.onReadFromDisk(StrictMode.java:1074)
+D/StrictMode(  601): 	at android.database.sqlite.SQLiteStatement.acquireAndLock(SQLiteStatement.java:228)
+D/StrictMode(  601): 	at android.database.sqlite.SQLiteStatement.simpleQueryForString(SQLiteStatement.java:160)
+D/StrictMode(  601): 	at android.database.DatabaseUtils.stringForQuery(DatabaseUtils.java:735)
+D/StrictMode(  601): 	at android.database.DatabaseUtils.stringForQuery(DatabaseUtils.java:723)
+D/StrictMode(  601): 	at android.database.sqlite.SQLiteDatabase.setJournalMode(SQLiteDatabase.java:1060)
+D/StrictMode(  601): 	at android.database.sqlite.SQLiteDatabase.enableWriteAheadLogging(SQLiteDatabase.java:2343)
+D/StrictMode(  601): 	at com.android.providers.media.MediaProvider$DatabaseHelper.onOpen(MediaProvider.java:339)
+D/StrictMode(  601): 	at android.database.sqlite.SQLiteOpenHelper.getWritableDatabase(SQLiteOpenHelper.java:180)
+D/StrictMode(  601): 	at com.android.providers.media.MediaProvider$DatabaseHelper.getWritableDatabase(MediaProvider.java:310)
+D/StrictMode(  601): 	at com.android.providers.media.MediaProvider.attachVolume(MediaProvider.java:4373)
+D/StrictMode(  601): 	at com.android.providers.media.MediaProvider.onCreate(MediaProvider.java:503)
+D/StrictMode(  601): 	at android.content.ContentProvider.attachInfo(ContentProvider.java:944)
+D/StrictMode(  601): 	at android.app.ActivityThread.installProvider(ActivityThread.java:4198)
+D/StrictMode(  601): 	at android.app.ActivityThread.installContentProviders(ActivityThread.java:3963)
+D/StrictMode(  601): 	at android.app.ActivityThread.handleBindApplication(ActivityThread.java:3917)
+D/StrictMode(  601): 	at android.app.ActivityThread.access$1300(ActivityThread.java:122)
+D/StrictMode(  601): 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1184)
+D/StrictMode(  601): 	at android.os.Handler.dispatchMessage(Handler.java:99)
+D/StrictMode(  601): 	at android.os.Looper.loop(Looper.java:137)
+D/StrictMode(  601): 	at android.app.ActivityThread.main(ActivityThread.java:4340)
+D/StrictMode(  601): 	at java.lang.reflect.Method.invokeNative(Native Method)
+D/StrictMode(  601): 	at java.lang.reflect.Method.invoke(Method.java:511)
+D/StrictMode(  601): 	at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:784)
+D/StrictMode(  601): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:551)
+D/StrictMode(  601): 	at dalvik.system.NativeStart.main(Native Method)
+D/StrictMode(  601): StrictMode policy violation; ~duration=1123 ms: android.os.StrictMode$StrictModeDiskReadViolation: policy=2711 violation=2
+D/StrictMode(  601): 	at android.os.StrictMode$AndroidBlockGuardPolicy.onReadFromDisk(StrictMode.java:1074)
+D/StrictMode(  601): 	at android.app.SharedPreferencesImpl.awaitLoadedLocked(SharedPreferencesImpl.java:184)
+D/StrictMode(  601): 	at android.app.SharedPreferencesImpl.getInt(SharedPreferencesImpl.java:220)
+D/StrictMode(  601): 	at com.android.providers.media.MediaProvider.createDefaultFolders(MediaProvider.java:447)
+D/StrictMode(  601): 	at com.android.providers.media.MediaProvider.attachVolume(MediaProvider.java:4373)
+D/StrictMode(  601): 	at com.android.providers.media.MediaProvider.onCreate(MediaProvider.java:503)
+D/StrictMode(  601): 	at android.content.ContentProvider.attachInfo(ContentProvider.java:944)
+D/StrictMode(  601): 	at android.app.ActivityThread.installProvider(ActivityThread.java:4198)
+D/StrictMode(  601): 	at android.app.ActivityThread.installContentProviders(ActivityThread.java:3963)
+D/StrictMode(  601): 	at android.app.ActivityThread.handleBindApplication(ActivityThread.java:3917)
+D/StrictMode(  601): 	at android.app.ActivityThread.access$1300(ActivityThread.java:122)
+D/StrictMode(  601): 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1184)
+D/StrictMode(  601): 	at android.os.Handler.dispatchMessage(Handler.java:99)
+D/StrictMode(  601): 	at android.os.Looper.loop(Looper.java:137)
+D/StrictMode(  601): 	at android.app.ActivityThread.main(ActivityThread.java:4340)
+D/StrictMode(  601): 	at java.lang.reflect.Method.invokeNative(Native Method)
+D/StrictMode(  601): 	at java.lang.reflect.Method.invoke(Method.java:511)
+D/StrictMode(  601): 	at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:784)
+D/StrictMode(  601): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:551)
+D/StrictMode(  601): 	at dalvik.system.NativeStart.main(Native Method)
+D/StrictMode(  601): StrictMode policy violation; ~duration=905 ms: android.os.StrictMode$StrictModeDiskReadViolation: policy=2711 violation=2
+D/StrictMode(  601): 	at android.os.StrictMode$AndroidBlockGuardPolicy.onReadFromDisk(StrictMode.java:1074)
+D/StrictMode(  601): 	at android.database.sqlite.SQLiteDatabase.rawQueryWithFactory(SQLiteDatabase.java:1557)
+D/StrictMode(  601): 	at android.database.sqlite.SQLiteQueryBuilder.query(SQLiteQueryBuilder.java:354)
+D/StrictMode(  601): 	at com.android.providers.media.MediaProvider.query(MediaProvider.java:2240)
+D/StrictMode(  601): 	at com.android.providers.media.MediaProvider.attachVolume(MediaProvider.java:4382)
+D/StrictMode(  601): 	at com.android.providers.media.MediaProvider.onCreate(MediaProvider.java:503)
+D/StrictMode(  601): 	at android.content.ContentProvider.attachInfo(ContentProvider.java:944)
+D/StrictMode(  601): 	at android.app.ActivityThread.installProvider(ActivityThread.java:4198)
+D/StrictMode(  601): 	at android.app.ActivityThread.installContentProviders(ActivityThread.java:3963)
+D/StrictMode(  601): 	at android.app.ActivityThread.handleBindApplication(ActivityThread.java:3917)
+D/StrictMode(  601): 	at android.app.ActivityThread.access$1300(ActivityThread.java:122)
+D/StrictMode(  601): 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1184)
+D/StrictMode(  601): 	at android.os.Handler.dispatchMessage(Handler.java:99)
+D/StrictMode(  601): 	at android.os.Looper.loop(Looper.java:137)
+D/StrictMode(  601): 	at android.app.ActivityThread.main(ActivityThread.java:4340)
+D/StrictMode(  601): 	at java.lang.reflect.Method.invokeNative(Native Method)
+D/StrictMode(  601): 	at java.lang.reflect.Method.invoke(Method.java:511)
+D/StrictMode(  601): 	at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:784)
+D/StrictMode(  601): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:551)
+D/StrictMode(  601): 	at dalvik.system.NativeStart.main(Native Method)
+I/ActivityManager(  378): Start proc com.android.mms for broadcast com.android.mms/.transaction.MmsSystemEventReceiver: pid=639 uid=10017 gids={3003, 1015}
+V/AlarmClock(  618): AlarmInitReceiver finished
+I/ActivityThread(  639): Pub mms_temp_file: com.android.mms.TempFileProvider
+I/ActivityThread(  639): Pub com.android.mms.SuggestionsProvider: com.android.mms.SuggestionsProvider
+V/MmsConfig(  639): mnc/mcc: 310260
+V/MmsConfig(  639): tag: bool value: enabledMMS - true
+V/MmsConfig(  639): tag: int value: maxMessageSize - 307200
+V/MmsConfig(  639): tag: int value: maxImageHeight - 480
+V/MmsConfig(  639): tag: int value: maxImageWidth - 640
+V/MmsConfig(  639): tag: int value: defaultSMSMessagesPerThread - 500
+V/MmsConfig(  639): tag: int value: defaultMMSMessagesPerThread - 50
+V/MmsConfig(  639): tag: int value: minMessageCountPerThread - 10
+V/MmsConfig(  639): tag: int value: maxMessageCountPerThread - 5000
+V/MmsConfig(  639): tag: string value: uaProfUrl - http://www.google.com/oha/rdf/ua-profile-kila.xml
+V/MmsConfig(  639): tag: int value: recipientLimit - -1
+V/MmsConfig(  639): tag: int value: smsToMmsTextThreshold - 4
+V/MmsConfig(  639): tag: bool value: enableMultipartSMS - true
+V/MmsConfig(  639): tag: bool value: enableSlideDuration - true
+V/MmsConfig(  639): tag: int value: maxMessageTextSize - -1
+D/MmsSmsDatabaseHelper(  458): [MmsSmsDb] hasAutoIncrement: CREATE TABLE threads (_id INTEGER PRIMARY KEY AUTOINCREMENT,date INTEGER DEFAULT 0,message_count INTEGER DEFAULT 0,recipient_ids TEXT,snippet TEXT,snippet_cs INTEGER DEFAULT 0,read INTEGER DEFAULT 1,type INTEGER DEFAULT 0,error INTEGER DEFAULT 0,has_attachment INTEGER DEFAULT 0) result: true
+D/MmsSmsDatabaseHelper(  458): [getWritableDatabase] hasAutoIncrement: true
+D/CountryDetectorService(  378): The first listener is added
+D/StrictMode(  639): StrictMode policy violation; ~duration=735 ms: android.os.StrictMode$StrictModeDiskReadViolation: policy=2711 violation=2
+D/StrictMode(  639): 	at android.os.StrictMode$AndroidBlockGuardPolicy.onReadFromDisk(StrictMode.java:1074)
+D/StrictMode(  639): 	at android.app.SharedPreferencesImpl.awaitLoadedLocked(SharedPreferencesImpl.java:184)
+D/StrictMode(  639): 	at android.app.SharedPreferencesImpl.getBoolean(SharedPreferencesImpl.java:241)
+D/StrictMode(  639): 	at android.preference.PreferenceManager.setDefaultValues(PreferenceManager.java:458)
+D/StrictMode(  639): 	at android.preference.PreferenceManager.setDefaultValues(PreferenceManager.java:440)
+D/StrictMode(  639): 	at com.android.mms.MmsApp.onCreate(MmsApp.java:64)
+D/StrictMode(  639): 	at android.app.Instrumentation.callApplicationOnCreate(Instrumentation.java:969)
+D/StrictMode(  639): 	at android.app.ActivityThread.handleBindApplication(ActivityThread.java:3925)
+D/StrictMode(  639): 	at android.app.ActivityThread.access$1300(ActivityThread.java:122)
+D/StrictMode(  639): 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1184)
+D/StrictMode(  639): 	at android.os.Handler.dispatchMessage(Handler.java:99)
+D/StrictMode(  639): 	at android.os.Looper.loop(Looper.java:137)
+D/StrictMode(  639): 	at android.app.ActivityThread.main(ActivityThread.java:4340)
+D/StrictMode(  639): 	at java.lang.reflect.Method.invokeNative(Native Method)
+D/StrictMode(  639): 	at java.lang.reflect.Method.invoke(Method.java:511)
+D/StrictMode(  639): 	at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:784)
+D/StrictMode(  639): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:551)
+D/StrictMode(  639): 	at dalvik.system.NativeStart.main(Native Method)
+D/StrictMode(  639): StrictMode policy violation; ~duration=417 ms: android.os.StrictMode$StrictModeDiskReadViolation: policy=2711 violation=2
+D/StrictMode(  639): 	at android.os.StrictMode$AndroidBlockGuardPolicy.onReadFromDisk(StrictMode.java:1074)
+D/StrictMode(  639): 	at android.app.SharedPreferencesImpl.awaitLoadedLocked(SharedPreferencesImpl.java:184)
+D/StrictMode(  639): 	at android.app.SharedPreferencesImpl.getBoolean(SharedPreferencesImpl.java:241)
+D/StrictMode(  639): 	at com.android.mms.util.DownloadManager.getAutoDownloadState(DownloadManager.java:154)
+D/StrictMode(  639): 	at com.android.mms.util.DownloadManager.getAutoDownloadState(DownloadManager.java:150)
+D/StrictMode(  639): 	at com.android.mms.util.DownloadManager.<init>(DownloadManager.java:121)
+D/StrictMode(  639): 	at com.android.mms.util.DownloadManager.init(DownloadManager.java:139)
+D/StrictMode(  639): 	at com.android.mms.MmsApp.onCreate(MmsApp.java:70)
+D/StrictMode(  639): 	at android.app.Instrumentation.callApplicationOnCreate(Instrumentation.java:969)
+D/StrictMode(  639): 	at android.app.ActivityThread.handleBindApplication(ActivityThread.java:3925)
+D/StrictMode(  639): 	at android.app.ActivityThread.access$1300(ActivityThread.java:122)
+D/StrictMode(  639): 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1184)
+D/StrictMode(  639): 	at android.os.Handler.dispatchMessage(Handler.java:99)
+D/StrictMode(  639): 	at android.os.Looper.loop(Looper.java:137)
+D/StrictMode(  639): 	at android.app.ActivityThread.main(ActivityThread.java:4340)
+D/StrictMode(  639): 	at java.lang.reflect.Method.invokeNative(Native Method)
+D/StrictMode(  639): 	at java.lang.reflect.Method.invoke(Method.java:511)
+D/StrictMode(  639): 	at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:784)
+D/StrictMode(  639): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:551)
+D/StrictMode(  639): 	at dalvik.system.NativeStart.main(Native Method)
+D/StrictMode(  639): StrictMode policy violation; ~duration=137 ms: android.os.StrictMode$StrictModeDiskReadViolation: policy=2967 violation=2
+D/StrictMode(  639): 	at android.os.StrictMode$AndroidBlockGuardPolicy.onReadFromDisk(StrictMode.java:1074)
+D/StrictMode(  639): 	at android.database.sqlite.SQLiteDatabase.rawQueryWithFactory(SQLiteDatabase.java:1557)
+D/StrictMode(  639): 	at android.database.sqlite.SQLiteDatabase.queryWithFactory(SQLiteDatabase.java:1449)
+D/StrictMode(  639): 	at android.database.sqlite.SQLiteDatabase.query(SQLiteDatabase.java:1405)
+D/StrictMode(  639): 	at android.database.sqlite.SQLiteDatabase.query(SQLiteDatabase.java:1485)
+D/StrictMode(  639): 	at com.android.providers.telephony.MmsProvider.deleteDataRows(MmsProvider.java:617)
+D/StrictMode(  639): 	at com.android.providers.telephony.MmsProvider.deleteTempDrmData(MmsProvider.java:612)
+D/StrictMode(  639): 	at com.android.providers.telephony.MmsProvider.delete(MmsProvider.java:561)
+D/StrictMode(  639): 	at android.content.ContentProvider$Transport.delete(ContentProvider.java:213)
+D/StrictMode(  639): 	at android.content.ContentProviderNative.onTransact(ContentProviderNative.java:192)
+D/StrictMode(  639): 	at android.os.Binder.execTransact(Binder.java:338)
+D/StrictMode(  639): 	at dalvik.system.NativeStart.run(Native Method)
+D/StrictMode(  639): # via Binder call with stack:
+D/StrictMode(  639): android.os.StrictMode$LogStackTrace
+D/StrictMode(  639): 	at android.os.StrictMode.readAndHandleBinderCallViolations(StrictMode.java:1602)
+D/StrictMode(  639): 	at android.os.Parcel.readExceptionCode(Parcel.java:1309)
+D/StrictMode(  639): 	at android.database.DatabaseUtils.readExceptionFromParcel(DatabaseUtils.java:132)
+D/StrictMode(  639): 	at android.content.ContentProviderProxy.delete(ContentProviderNative.java:479)
+D/StrictMode(  639): 	at android.content.ContentResolver.delete(ContentResolver.java:821)
+D/StrictMode(  639): 	at android.database.sqlite.SqliteWrapper.delete(SqliteWrapper.java:90)
+D/StrictMode(  639): 	at com.android.mms.drm.DrmUtils.cleanupStorage(DrmUtils.java:39)
+D/StrictMode(  639): 	at com.android.mms.MmsApp.onCreate(MmsApp.java:72)
+D/StrictMode(  639): 	at android.app.Instrumentation.callApplicationOnCreate(Instrumentation.java:969)
+D/StrictMode(  639): 	at android.app.ActivityThread.handleBindApplication(ActivityThread.java:3925)
+D/StrictMode(  639): 	at android.app.ActivityThread.access$1300(ActivityThread.java:122)
+D/StrictMode(  639): 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1184)
+D/StrictMode(  639): 	at android.os.Handler.dispatchMessage(Handler.java:99)
+D/StrictMode(  639): 	at android.os.Looper.loop(Looper.java:137)
+D/StrictMode(  639): 	at android.app.ActivityThread.main(ActivityThread.java:4340)
+D/StrictMode(  639): 	at java.lang.reflect.Method.invokeNative(Native Method)
+D/StrictMode(  639): 	at java.lang.reflect.Method.invoke(Method.java:511)
+D/StrictMode(  639): 	at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:784)
+D/StrictMode(  639): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:551)
+D/StrictMode(  639): 	at dalvik.system.NativeStart.main(Native Method)
+I/ActivityManager(  378): Start proc com.android.email for broadcast com.android.email/.service.EmailBroadcastReceiver: pid=664 uid=10020 gids={3003, 1015}
+D/dalvikvm(  639): GC_CONCURRENT freed 329K, 5% free 10007K/10439K, paused 5ms+11ms
+I/ActivityThread(  664): Pub com.android.email.provider;com.android.email.notifier: com.android.email.provider.EmailProvider
+I/ActivityThread(  664): Pub com.android.email.attachmentprovider: com.android.email.provider.AttachmentProvider
+I/ActivityManager(  378): Start proc com.android.exchange for service com.android.exchange/.ExchangeService: pid=681 uid=10034 gids={3003, 1015}
+D/StrictMode(  664): StrictMode policy violation; ~duration=216 ms: android.os.StrictMode$StrictModeDiskReadViolation: policy=2711 violation=2
+D/StrictMode(  664): 	at android.os.StrictMode$AndroidBlockGuardPolicy.onReadFromDisk(StrictMode.java:1074)
+D/StrictMode(  664): 	at android.app.SharedPreferencesImpl.awaitLoadedLocked(SharedPreferencesImpl.java:184)
+D/StrictMode(  664): 	at android.app.SharedPreferencesImpl.getBoolean(SharedPreferencesImpl.java:241)
+D/StrictMode(  664): 	at com.android.email.Preferences.getEnableDebugLogging(Preferences.java:119)
+D/StrictMode(  664): 	at com.android.email.Email.onCreate(Email.java:201)
+D/StrictMode(  664): 	at android.app.Instrumentation.callApplicationOnCreate(Instrumentation.java:969)
+D/StrictMode(  664): 	at android.app.ActivityThread.handleBindApplication(ActivityThread.java:3925)
+D/StrictMode(  664): 	at android.app.ActivityThread.access$1300(ActivityThread.java:122)
+D/StrictMode(  664): 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1184)
+D/StrictMode(  664): 	at android.os.Handler.dispatchMessage(Handler.java:99)
+D/StrictMode(  664): 	at android.os.Looper.loop(Looper.java:137)
+D/StrictMode(  664): 	at android.app.ActivityThread.main(ActivityThread.java:4340)
+D/StrictMode(  664): 	at java.lang.reflect.Method.invokeNative(Native Method)
+D/StrictMode(  664): 	at java.lang.reflect.Method.invoke(Method.java:511)
+D/StrictMode(  664): 	at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:784)
+D/StrictMode(  664): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:551)
+D/StrictMode(  664): 	at dalvik.system.NativeStart.main(Native Method)
+D/dalvikvm(  585): GC_CONCURRENT freed 300K, 4% free 9978K/10375K, paused 5ms+472ms
+D/StrictMode(  585): StrictMode policy violation; ~duration=634 ms: android.os.StrictMode$StrictModeDiskReadViolation: policy=2711 violation=2
+D/StrictMode(  585): 	at android.os.StrictMode$AndroidBlockGuardPolicy.onReadFromDisk(StrictMode.java:1074)
+D/StrictMode(  585): 	at android.database.sqlite.SQLiteStatement.acquireAndLock(SQLiteStatement.java:228)
+D/StrictMode(  585): 	at android.database.sqlite.SQLiteStatement.simpleQueryForLong(SQLiteStatement.java:137)
+D/StrictMode(  585): 	at android.database.DatabaseUtils.longForQuery(DatabaseUtils.java:713)
+D/StrictMode(  585): 	at android.database.DatabaseUtils.longForQuery(DatabaseUtils.java:701)
+D/StrictMode(  585): 	at android.database.sqlite.SQLiteDatabase.getVersion(SQLiteDatabase.java:1239)
+D/StrictMode(  585): 	at android.database.sqlite.SQLiteOpenHelper.getWritableDatabase(SQLiteOpenHelper.java:160)
+D/StrictMode(  585): 	at com.android.providers.calendar.CalendarDatabaseHelper.getWritableDatabase(CalendarDatabaseHelper.java:2735)
+D/StrictMode(  585): 	at com.android.providers.calendar.CalendarProvider2.initialize(CalendarProvider2.java:476)
+D/StrictMode(  585): 	at com.android.providers.calendar.CalendarProvider2.onCreate(CalendarProvider2.java:460)
+D/StrictMode(  585): 	at android.content.ContentProvider.attachInfo(ContentProvider.java:944)
+D/StrictMode(  585): 	at android.app.ActivityThread.installProvider(ActivityThread.java:4198)
+D/StrictMode(  585): 	at android.app.ActivityThread.installContentProviders(ActivityThread.java:3963)
+D/StrictMode(  585): 	at android.app.ActivityThread.handleBindApplication(ActivityThread.java:3917)
+D/StrictMode(  585): 	at android.app.ActivityThread.access$1300(ActivityThread.java:122)
+D/StrictMode(  585): 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1184)
+D/StrictMode(  585): 	at android.os.Handler.dispatchMessage(Handler.java:99)
+D/StrictMode(  585): 	at android.os.Looper.loop(Looper.java:137)
+D/StrictMode(  585): 	at android.app.ActivityThread.main(ActivityThread.java:4340)
+D/StrictMode(  585): 	at java.lang.reflect.Method.invokeNative(Native Method)
+D/StrictMode(  585): 	at java.lang.reflect.Method.invoke(Method.java:511)
+D/StrictMode(  585): 	at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:784)
+D/StrictMode(  585): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:551)
+D/StrictMode(  585): 	at dalvik.system.NativeStart.main(Native Method)
+D/StrictMode(  585): StrictMode policy violation; ~duration=554 ms: android.os.StrictMode$StrictModeDiskReadViolation: policy=2711 violation=2
+D/StrictMode(  585): 	at android.os.StrictMode$AndroidBlockGuardPolicy.onReadFromDisk(StrictMode.java:1074)
+D/StrictMode(  585): 	at android.database.sqlite.SQLiteStatement.acquireAndLock(SQLiteStatement.java:228)
+D/StrictMode(  585): 	at android.database.sqlite.SQLiteStatement.simpleQueryForLong(SQLiteStatement.java:137)
+D/StrictMode(  585): 	at android.database.DatabaseUtils.longForQuery(DatabaseUtils.java:713)
+D/StrictMode(  585): 	at android.database.DatabaseUtils.longForQuery(DatabaseUtils.java:701)
+D/StrictMode(  585): 	at com.android.common.content.SyncStateContentProviderHelper.onDatabaseOpened(SyncStateContentProviderHelper.java:73)
+D/StrictMode(  585): 	at com.android.providers.calendar.CalendarDatabaseHelper.onOpen(CalendarDatabaseHelper.java:271)
+D/StrictMode(  585): 	at android.database.sqlite.SQLiteOpenHelper.getWritableDatabase(SQLiteOpenHelper.java:180)
+D/StrictMode(  585): 	at com.android.providers.calendar.CalendarDatabaseHelper.getWritableDatabase(CalendarDatabaseHelper.java:2735)
+D/StrictMode(  585): 	at com.android.providers.calendar.CalendarProvider2.initialize(CalendarProvider2.java:476)
+D/StrictMode(  585): 	at com.android.providers.calendar.CalendarProvider2.onCreate(CalendarProvider2.java:460)
+D/StrictMode(  585): 	at android.content.ContentProvider.attachInfo(ContentProvider.java:944)
+D/StrictMode(  585): 	at android.app.ActivityThread.installProvider(ActivityThread.java:4198)
+D/StrictMode(  585): 	at android.app.ActivityThread.installContentProviders(ActivityThread.java:3963)
+D/StrictMode(  585): 	at android.app.ActivityThread.handleBindApplication(ActivityThread.java:3917)
+D/StrictMode(  585): 	at android.app.ActivityThread.access$1300(ActivityThread.java:122)
+D/StrictMode(  585): 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1184)
+D/StrictMode(  585): 	at android.os.Handler.dispatchMessage(Handler.java:99)
+D/StrictMode(  585): 	at android.os.Looper.loop(Looper.java:137)
+D/StrictMode(  585): 	at android.app.ActivityThread.main(ActivityThread.java:4340)
+D/StrictMode(  585): 	at java.lang.reflect.Method.invokeNative(Native Method)
+D/StrictMode(  585): 	at java.lang.reflect.Method.invoke(Method.java:511)
+D/StrictMode(  585): 	at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:784)
+D/StrictMode(  585): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:551)
+D/StrictMode(  585): 	at dalvik.system.NativeStart.main(Native Method)
+I/ActivityThread(  681): Pub com.android.exchange.directory.provider: com.android.exchange.provider.ExchangeDirectoryProvider
+D/ExchangeService(  681): !!! EAS ExchangeService, onStartCommand, startingUp = false, running = false
+D/dalvikvm(  561): GC_CONCURRENT freed 163K, 3% free 10127K/10375K, paused 5ms+3840ms
+I/AccountTypeManager(  561): Loaded meta-data for 1 account types, 0 accounts in 11428ms(wall) 41ms(cpu)
+D/ExchangeService(  681): !!! EAS ExchangeService, onCreate
+D/StrictMode(  585): StrictMode policy violation; ~duration=284 ms: android.os.StrictMode$StrictModeDiskWriteViolation: policy=2711 violation=1
+D/StrictMode(  585): 	at android.os.StrictMode$AndroidBlockGuardPolicy.onWriteToDisk(StrictMode.java:1048)
+D/StrictMode(  585): 	at android.database.sqlite.SQLiteStatement.acquireAndLock(SQLiteStatement.java:226)
+D/StrictMode(  585): 	at android.database.sqlite.SQLiteStatement.executeUpdateDelete(SQLiteStatement.java:84)
+D/StrictMode(  585): 	at android.database.sqlite.SQLiteDatabase.executeSql(SQLiteDatabase.java:1899)
+D/StrictMode(  585): 	at android.database.sqlite.SQLiteDatabase.execSQL(SQLiteDatabase.java:1839)
+D/StrictMode(  585): 	at android.database.sqlite.SQLiteDatabase.beginTransaction(SQLiteDatabase.java:659)
+D/StrictMode(  585): 	at android.database.sqlite.SQLiteDatabase.beginTransactionWithListener(SQLiteDatabase.java:605)
+D/StrictMode(  585): 	at com.android.providers.calendar.SQLiteContentProvider.update(SQLiteContentProvider.java:145)
+D/StrictMode(  585): 	at android.content.ContentProvider$Transport.update(ContentProvider.java:219)
+D/StrictMode(  585): 	at android.content.ContentResolver.update(ContentResolver.java:855)
+D/StrictMode(  585): 	at com.android.providers.calendar.CalendarReceiver.onReceive(CalendarReceiver.java:49)
+D/StrictMode(  585): 	at android.app.ActivityThread.handleReceiver(ActivityThread.java:2118)
+D/StrictMode(  585): 	at android.app.ActivityThread.access$1500(ActivityThread.java:122)
+D/StrictMode(  585): 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1196)
+D/StrictMode(  585): 	at android.os.Handler.dispatchMessage(Handler.java:99)
+D/StrictMode(  585): 	at android.os.Looper.loop(Looper.java:137)
+D/StrictMode(  585): 	at android.app.ActivityThread.main(ActivityThread.java:4340)
+D/StrictMode(  585): 	at java.lang.reflect.Method.invokeNative(Native Method)
+D/StrictMode(  585): 	at java.lang.reflect.Method.invoke(Method.java:511)
+D/StrictMode(  585): 	at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:784)
+D/StrictMode(  585): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:551)
+D/StrictMode(  585): 	at dalvik.system.NativeStart.main(Native Method)
+D/StrictMode(  585): StrictMode policy violation; ~duration=50 ms: android.os.StrictMode$StrictModeDiskWriteViolation: policy=2711 violation=1
+D/StrictMode(  585): 	at android.os.StrictMode$AndroidBlockGuardPolicy.onWriteToDisk(StrictMode.java:1048)
+D/StrictMode(  585): 	at android.database.sqlite.SQLiteStatement.acquireAndLock(SQLiteStatement.java:226)
+D/StrictMode(  585): 	at android.database.sqlite.SQLiteStatement.executeUpdateDelete(SQLiteStatement.java:84)
+D/StrictMode(  585): 	at android.database.sqlite.SQLiteDatabase.executeSql(SQLiteDatabase.java:1899)
+D/StrictMode(  585): 	at android.database.sqlite.SQLiteDatabase.execSQL(SQLiteDatabase.java:1839)
+D/StrictMode(  585): 	at android.database.sqlite.SQLiteDatabase.endTransaction(SQLiteDatabase.java:714)
+D/StrictMode(  585): 	at com.android.providers.calendar.SQLiteContentProvider.update(SQLiteContentProvider.java:154)
+D/StrictMode(  585): 	at android.content.ContentProvider$Transport.update(ContentProvider.java:219)
+D/StrictMode(  585): 	at android.content.ContentResolver.update(ContentResolver.java:855)
+D/StrictMode(  585): 	at com.android.providers.calendar.CalendarReceiver.onReceive(CalendarReceiver.java:49)
+D/StrictMode(  585): 	at android.app.ActivityThread.handleReceiver(ActivityThread.java:2118)
+D/StrictMode(  585): 	at android.app.ActivityThread.access$1500(ActivityThread.java:122)
+D/StrictMode(  585): 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1196)
+D/StrictMode(  585): 	at android.os.Handler.dispatchMessage(Handler.java:99)
+D/StrictMode(  585): 	at android.os.Looper.loop(Looper.java:137)
+D/StrictMode(  585): 	at android.app.ActivityThread.main(ActivityThread.java:4340)
+D/StrictMode(  585): 	at java.lang.reflect.Method.invokeNative(Native Method)
+D/StrictMode(  585): 	at java.lang.reflect.Method.invoke(Method.java:511)
+D/StrictMode(  585): 	at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:784)
+D/StrictMode(  585): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:551)
+D/StrictMode(  585): 	at dalvik.system.NativeStart.main(Native Method)
+E/DefaultVoicemailNotifier(  561): No voicemails to notify about: clear the notification.
+D/ExchangeService(  681): !!! EAS ExchangeService, onStartCommand, startingUp = true, running = false
+W/dalvikvm(  664): threadid=5: spin on suspend #1 threadid=2 (pcf=0)
+D/dalvikvm(  664): Temporarily moving tid 667 to fg (was 0)
+W/dalvikvm(  664): threadid=5: spin on suspend resolved in 1249 msec
+D/dalvikvm(  664): Restored policy of 667 to 0
+D/dalvikvm(  378): GC_CONCURRENT freed 499K, 6% free 12619K/13319K, paused 6ms+29ms
+D/dalvikvm(  664): GC_CONCURRENT freed 220K, 4% free 10074K/10439K, paused 5ms+6ms
+D/Eas Debug(  681): Logging: 
+D/dalvikvm(  476): GC_CONCURRENT freed 304K, 5% free 10886K/11399K, paused 5ms+7ms
+D/GpsLocationProvider(  378): NTP server returned: 1332894250568 (Wed Mar 28 08:24:10 HKT 2012) reference: 130718 certainty: 28 system time offset: 520
+D/ExchangeService(  681): Received deviceId from Email app: androidc259148960
+D/ExchangeService(  681): Reconciling accounts...
+D/ExchangeService(  681): !!! EAS ExchangeService, onStartCommand, startingUp = true, running = false
+D/dalvikvm(  476): GC_FOR_ALLOC freed 254K, 5% free 10886K/11399K, paused 84ms
+I/dalvikvm-heap(  476): Grow heap (frag case) to 11.041MB for 345760-byte allocation
+D/dalvikvm(  476): GC_FOR_ALLOC freed 10K, 5% free 11213K/11783K, paused 73ms
+D/dalvikvm(  476): GC_FOR_ALLOC freed <1K, 5% free 11214K/11783K, paused 81ms
+I/dalvikvm-heap(  476): Grow heap (frag case) to 11.361MB for 345760-byte allocation
+D/dalvikvm(  476): GC_FOR_ALLOC freed <1K, 6% free 11551K/12167K, paused 76ms
+D/dalvikvm(  476): GC_FOR_ALLOC freed <1K, 6% free 11552K/12167K, paused 77ms
+I/dalvikvm-heap(  476): Grow heap (frag case) to 11.691MB for 345760-byte allocation
+D/dalvikvm(  476): GC_FOR_ALLOC freed <1K, 6% free 11889K/12551K, paused 86ms
+I/CalendarProvider2(  585): Sending notification intent: Intent { act=android.intent.action.PROVIDER_CHANGED dat=content://com.android.calendar }
+W/ContentResolver(  585): Failed to get type for: content://com.android.calendar (Unknown URL content://com.android.calendar)
+I/ActivityManager(  378): Start proc com.android.calendar for broadcast com.android.calendar/.widget.CalendarAppWidgetService$CalendarFactory: pid=712 uid=10010 gids={3003}
+I/ActivityThread(  712): Pub com.android.calendar.CalendarRecentSuggestionsProvider: com.android.calendar.CalendarRecentSuggestionsProvider
+D/Eas Debug(  681): Logging: 
+D/StrictMode(  712): StrictMode policy violation; ~duration=190 ms: android.os.StrictMode$StrictModeDiskReadViolation: policy=2711 violation=2
+D/StrictMode(  712): 	at android.os.StrictMode$AndroidBlockGuardPolicy.onReadFromDisk(StrictMode.java:1074)
+D/StrictMode(  712): 	at android.app.SharedPreferencesImpl.awaitLoadedLocked(SharedPreferencesImpl.java:184)
+D/StrictMode(  712): 	at android.app.SharedPreferencesImpl.getBoolean(SharedPreferencesImpl.java:241)
+D/StrictMode(  712): 	at android.preference.PreferenceManager.setDefaultValues(PreferenceManager.java:458)
+D/StrictMode(  712): 	at com.android.calendar.GeneralPreferences.setDefaultValues(GeneralPreferences.java:118)
+D/StrictMode(  712): 	at com.android.calendar.CalendarApplication.onCreate(CalendarApplication.java:30)
+D/StrictMode(  712): 	at android.app.Instrumentation.callApplicationOnCreate(Instrumentation.java:969)
+D/StrictMode(  712): 	at android.app.ActivityThread.handleBindApplication(ActivityThread.java:3925)
+D/StrictMode(  712): 	at android.app.ActivityThread.access$1300(ActivityThread.java:122)
+D/StrictMode(  712): 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1184)
+D/StrictMode(  712): 	at android.os.Handler.dispatchMessage(Handler.java:99)
+D/StrictMode(  712): 	at android.os.Looper.loop(Looper.java:137)
+D/StrictMode(  712): 	at android.app.ActivityThread.main(ActivityThread.java:4340)
+D/StrictMode(  712): 	at java.lang.reflect.Method.invokeNative(Native Method)
+D/StrictMode(  712): 	at java.lang.reflect.Method.invoke(Method.java:511)
+D/StrictMode(  712): 	at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:784)
+D/StrictMode(  712): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:551)
+D/StrictMode(  712): 	at dalvik.system.NativeStart.main(Native Method)
+D/StrictMode(  712): StrictMode policy violation; ~duration=50 ms: android.os.StrictMode$StrictModeDiskReadViolation: policy=2711 violation=2
+D/StrictMode(  712): 	at android.os.StrictMode$AndroidBlockGuardPolicy.onReadFromDisk(StrictMode.java:1074)
+D/StrictMode(  712): 	at android.app.SharedPreferencesImpl.awaitLoadedLocked(SharedPreferencesImpl.java:184)
+D/StrictMode(  712): 	at android.app.SharedPreferencesImpl.getBoolean(SharedPreferencesImpl.java:241)
+D/StrictMode(  712): 	at com.android.calendar.Utils.getHideDeclinedEvents(Utils.java:464)
+D/StrictMode(  712): 	at com.android.calendar.widget.CalendarAppWidgetService$CalendarFactory.initLoader(CalendarAppWidgetService.java:356)
+D/StrictMode(  712): 	at com.android.calendar.widget.CalendarAppWidgetService$CalendarFactory.onReceive(CalendarAppWidgetService.java:525)
+D/StrictMode(  712): 	at android.app.ActivityThread.handleReceiver(ActivityThread.java:2118)
+D/StrictMode(  712): 	at android.app.ActivityThread.access$1500(ActivityThread.java:122)
+D/StrictMode(  712): 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1196)
+D/StrictMode(  712): 	at android.os.Handler.dispatchMessage(Handler.java:99)
+D/StrictMode(  712): 	at android.os.Looper.loop(Looper.java:137)
+D/StrictMode(  712): 	at android.app.ActivityThread.main(ActivityThread.java:4340)
+D/StrictMode(  712): 	at java.lang.reflect.Method.invokeNative(Native Method)
+D/StrictMode(  712): 	at java.lang.reflect.Method.invoke(Method.java:511)
+D/StrictMode(  712): 	at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:784)
+D/StrictMode(  712): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:551)
+D/StrictMode(  712): 	at dalvik.system.NativeStart.main(Native Method)
+D/dalvikvm(  524): GC_CONCURRENT freed 231K, 4% free 10190K/10567K, paused 5ms+4ms
+D/ExchangeService(  681): !!! EAS ExchangeService, onStartCommand, startingUp = true, running = false
+D/dalvikvm(  476): GC_CONCURRENT freed 221K, 4% free 12256K/12679K, paused 4ms+14ms
+D/dalvikvm(  476): GC_FOR_ALLOC freed 444K, 5% free 12476K/13063K, paused 84ms
+D/dalvikvm(  476): GC_FOR_ALLOC freed 11K, 5% free 12712K/13319K, paused 126ms
+D/dalvikvm(  476): GC_FOR_ALLOC freed 317K, 7% free 12698K/13511K, paused 84ms
+I/dalvikvm-heap(  476): Grow heap (frag case) to 13.363MB for 925072-byte allocation
+D/dalvikvm(  476): GC_CONCURRENT freed 2K, 7% free 13599K/14471K, paused 4ms+35ms
+W/SoundPool(  378):   sample 0 not READY
+D/PhoneStatusBar(  431): disable: < expand icons alerts ticker system_info BACK HOME recent* CLOCK >
+D/PhoneStatusBar(  431): disable: < expand icons alerts ticker system_info back* home* recent clock* >
+I/ARMAssembler(  368): generated scanline__00000077:03515104_00009001_00000000 [131 ipp] (153 ins) at [0x412e91e8:0x412e944c] in 9889065 ns
+I/ActivityManager(  378): Displayed com.android.launcher/com.android.launcher2.Launcher: +1m19s37ms
+D/dalvikvm(  476): GREF has increased to 201
+D/dalvikvm(  476): GC_FOR_ALLOC freed 1190K, 11% free 12941K/14471K, paused 43ms
+I/dalvikvm-heap(  476): Grow heap (frag case) to 13.828MB for 1163536-byte allocation
+D/dalvikvm(  476): GC_CONCURRENT freed 2K, 10% free 14075K/15623K, paused 8ms+6ms
+D/dalvikvm(  476): GC_FOR_ALLOC freed <1K, 10% free 14076K/15623K, paused 43ms
+I/dalvikvm-heap(  476): Grow heap (frag case) to 14.936MB for 1163536-byte allocation
+D/dalvikvm(  476): GC_FOR_ALLOC freed 0K, 10% free 15212K/16775K, paused 43ms
+D/dalvikvm(  476): GC_FOR_ALLOC freed 0K, 10% free 15212K/16775K, paused 41ms
+I/dalvikvm-heap(  476): Grow heap (frag case) to 16.045MB for 1163536-byte allocation
+D/dalvikvm(  476): GC_FOR_ALLOC freed 0K, 9% free 16349K/17927K, paused 42ms
+D/dalvikvm(  476): GC_FOR_ALLOC freed 4K, 9% free 16348K/17927K, paused 43ms
+I/dalvikvm-heap(  476): Grow heap (frag case) to 17.192MB for 1203064-byte allocation
+D/dalvikvm(  476): GC_FOR_ALLOC freed 0K, 9% free 17523K/19143K, paused 48ms
+I/ActivityManager(  378): START {act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=org.libsdl.app/.SDLActivity} from pid 476
+D/PermissionCache(  368): checking android.permission.READ_FRAME_BUFFER for uid=1000 => granted (1024 us)
+W/WindowManager(  378): Failure taking screenshot for (180x300) to layer 21005
+I/WindowManager(  378): createSurface Window{415b07f0 Starting org.libsdl.app paused=false}: DRAW NOW PENDING
+D/dalvikvm(  740): Not late-enabling CheckJNI (already on)
+I/ActivityManager(  378): Start proc org.libsdl.app for activity org.libsdl.app/.SDLActivity: pid=740 uid=10040 gids={1015}
+W/NetworkManagementSocketTagger(  378): setKernelCountSet(10040, 1) failed with errno -2
+V/PhoneStatusBar(  431): setLightsOn(true)
+I/ARMAssembler(  368): generated scanline__00000077:03515104_00009002_00000000 [127 ipp] (149 ins) at [0x412e9450:0x412e96a4] in 2365466 ns
+D/dalvikvm(  740): Trying to load lib /data/data/org.libsdl.app/lib/libSDL2.so 0x41347608
+D/dalvikvm(  740): Added shared lib /data/data/org.libsdl.app/lib/libSDL2.so 0x41347608
+D/dalvikvm(  740): Trying to load lib /data/data/org.libsdl.app/lib/libffmpeg.so 0x41347608
+D/dalvikvm(  740): Added shared lib /data/data/org.libsdl.app/lib/libffmpeg.so 0x41347608
+D/dalvikvm(  740): No JNI_OnLoad found in /data/data/org.libsdl.app/lib/libffmpeg.so 0x41347608, skipping init
+D/dalvikvm(  740): Trying to load lib /data/data/org.libsdl.app/lib/libmain.so 0x41347608
+D/dalvikvm(  740): Added shared lib /data/data/org.libsdl.app/lib/libmain.so 0x41347608
+D/dalvikvm(  378): GREF has increased to 401
+V/SDL     (  740): onResume()
+I/WindowManager(  378): createSurface Window{415b6bb8 org.libsdl.app/org.libsdl.app.SDLActivity paused=false}: DRAW NOW PENDING
+I/WindowManager(  378): createSurface Window{415b7ed0 SurfaceView paused=false}: DRAW NOW PENDING
+V/SDL     (  740): surfaceCreated()
+V/SDL     (  740): surfaceChanged()
+V/SDL     (  740): pixel format RGB_565
+V/SDL     (  740): Window size:320x483
+I/SDL     (  740): SDL_Android_Init()
+I/SDL     (  740): SDL_Android_Init() finished!
+D/gralloc_goldfish(  740): Emulator without GPU emulation detected.
+I/ActivityManager(  378): Displayed org.libsdl.app/.SDLActivity: +1s422ms
+V/PhoneStatusBar(  431): setLightsOn(true)
+W/NetworkManagementSocketTagger(  378): setKernelCountSet(10005, 0) failed with errno -2
+W/InputManagerService(  378): Starting input on non-focused client com.android.internal.view.IInputMethodClient$Stub$Proxy@414c4da0 (uid=10005 pid=476)
+W/ThrottleService(  378): unable to find stats for iface rmnet0
+D/libEGL  (  740): Emulator without GPU support detected. Fallback to software renderer.
+D/libEGL  (  740): loaded /system/lib/egl/libGLES_android.so
+E/SDL     (  740): No EGL config available
+V/SDL     (  740): Creating new EGL Surface
+I/SDL     (  740): [STUB] GL_SetSwapInterval
+I/SDL     (  740): [STUB] GL_GetSwapInterval
+I/ARMAssembler(  368): generated scanline__00000077:03010104_00008004_00000000 [ 84 ipp] (103 ins) at [0x412e96a8:0x412e9844] in 1461309 ns
+I/video.c (  740): render present done
+F/libc    (  740): Fatal signal 11 (SIGSEGV) at 0x00000000 (code=1)
+I/DEBUG   (   34): *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+I/DEBUG   (   34): Build fingerprint: 'generic/sdk/generic:4.0.2/ICS_MR0/229537:eng/test-keys'
+I/DEBUG   (   34): pid: 740, tid: 754  >>> org.libsdl.app <<<
+I/DEBUG   (   34): signal 11 (SIGSEGV), code 1 (SEGV_MAPERR), fault addr 00000000
+I/DEBUG   (   34):  r0 0017d338  r1 00283398  r2 00000000  r3 00000000
+I/DEBUG   (   34):  r4 00283398  r5 00000000  r6 00000080  r7 47eedebc
+I/DEBUG   (   34):  r8 000000a8  r9 00000000  10 4810ead8  fp 47eedf90
+I/DEBUG   (   34):  ip 47eeded4  sp 4810ea58  lr 4740098d  pc 474028e6  cpsr 00000030
+I/DEBUG   (   34):  d0  000000003f800000  d1  0000000043f18000
+I/DEBUG   (   34):  d2  3f8000003f800000  d3  43a000003f800000
+I/DEBUG   (   34):  d4  000000003f800000  d5  bf80000000000000
+I/DEBUG   (   34):  d6  bf8000003f800000  d7  bf8000003f800000
+I/DEBUG   (   34):  d8  0000000000000000  d9  0000000000000000
+I/DEBUG   (   34):  d10 0000000000000000  d11 0000000000000000
+I/DEBUG   (   34):  d12 0000000000000000  d13 0000000000000000
+I/DEBUG   (   34):  d14 0000000000000000  d15 0000000000000000
+I/DEBUG   (   34):  scr 60000012
+I/DEBUG   (   34): 
+I/DEBUG   (   34):          #00  pc 000368e6  /data/data/org.libsdl.app/lib/libSDL2.so (SDL_SW_LockYUVTexture)
+I/DEBUG   (   34):          #01  pc 00034988  /data/data/org.libsdl.app/lib/libSDL2.so (SDL_LockTexture)
+I/DEBUG   (   34):          #02  pc 0000165c  /data/data/org.libsdl.app/lib/libmain.so (SDL_main)
+I/DEBUG   (   34):          #03  pc 00001498  /data/data/org.libsdl.app/lib/libmain.so (Java_org_libsdl_app_SDLActivity_nativeInit)
+I/DEBUG   (   34):          #04  pc 0001ec70  /system/lib/libdvm.so (dvmPlatformInvoke)
+I/DEBUG   (   34):          #05  pc 0005925a  /system/lib/libdvm.so (_Z16dvmCallJNIMethodPKjP6JValuePK6MethodP6Thread)
+I/DEBUG   (   34):          #06  pc 0004cc7c  /system/lib/libdvm.so (_Z21dvmCheckCallJNIMethodPKjP6JValuePK6MethodP6Thread)
+I/DEBUG   (   34):          #07  pc 0005af84  /system/lib/libdvm.so (_Z22dvmResolveNativeMethodPKjP6JValuePK6MethodP6Thread)
+I/DEBUG   (   34):          #08  pc 00030a8c  /system/lib/libdvm.so
+I/DEBUG   (   34):          #09  pc 000342ac  /system/lib/libdvm.so (_Z12dvmInterpretP6ThreadPK6MethodP6JValue)
+I/DEBUG   (   34):          #10  pc 0006cc1c  /system/lib/libdvm.so (_Z14dvmCallMethodVP6ThreadPK6MethodP6ObjectbP6JValueSt9__va_list)
+I/DEBUG   (   34):          #11  pc 0006cc40  /system/lib/libdvm.so (_Z13dvmCallMethodP6ThreadPK6MethodP6ObjectP6JValuez)
+I/DEBUG   (   34):          #12  pc 0005fd84  /system/lib/libdvm.so
+I/DEBUG   (   34):          #13  pc 00012e08  /system/lib/libc.so (__thread_entry)
+I/DEBUG   (   34):          #14  pc 00012958  /system/lib/libc.so (pthread_create)
+I/DEBUG   (   34): 
+I/DEBUG   (   34): code around pc:
+I/DEBUG   (   34): 474028c4 6804b570 42ac4d16 4d16d010 d00d42ac 
+I/DEBUG   (   34): 474028d4 684d680c 00618c86 436c1c34 6ac41909 
+I/DEBUG   (   34): 474028e4 60111861 20008c82 bd70601a d0ef2900 
+I/DEBUG   (   34): 474028f4 2c00680c 684cd10d d10a2c00 6884688d 
+I/DEBUG   (   34): 47402904 d10642a5 68c168cc d102428c 24002500 
+I/DEBUG   (   34): 
+I/DEBUG   (   34): code around lr:
+I/DEBUG   (   34): 4740096c 42913201 6882d13c d14c2a01 d03e2d00 
+I/DEBUG   (   34): 4740097c 28006aa0 1c29d009 464b1c32 ff9cf001 
+I/DEBUG   (   34): 4740098c bc0cb007 46994690 6a62bdf0 d0412a00 
+I/DEBUG   (   34): 4740099c 1c292034 c98c1900 6809c08c 6b226001 
+I/DEBUG   (   34): 474009ac 6ae06869 1c0f682d 68624357 2a004680 
+I/DEBUG   (   34): 
+I/DEBUG   (   34): stack:
+I/DEBUG   (   34):     4810ea18  47eedf90  
+I/DEBUG   (   34):     4810ea1c  476d2c64  /data/data/org.libsdl.app/lib/libffmpeg.so
+I/DEBUG   (   34):     4810ea20  00000008  
+I/DEBUG   (   34):     4810ea24  00000008  
+I/DEBUG   (   34):     4810ea28  00000003  
+I/DEBUG   (   34):     4810ea2c  0021efa8  
+I/DEBUG   (   34):     4810ea30  0021efa8  
+I/DEBUG   (   34):     4810ea34  001df178  
+I/DEBUG   (   34):     4810ea38  0021efa8  
+I/DEBUG   (   34):     4810ea3c  001df178  
+I/DEBUG   (   34):     4810ea40  0021efa8  
+I/DEBUG   (   34):     4810ea44  00000024  
+I/DEBUG   (   34):     4810ea48  00000024  
+I/DEBUG   (   34):     4810ea4c  0014de58  
+I/DEBUG   (   34):     4810ea50  df0027ad  
+I/DEBUG   (   34):     4810ea54  00000000  
+I/DEBUG   (   34): #00 4810ea58  001e9ba0  
+I/DEBUG   (   34):     4810ea5c  4810ea70  
+I/DEBUG   (   34):     4810ea60  00000000  
+I/DEBUG   (   34):     4810ea64  4740098d  /data/data/org.libsdl.app/lib/libSDL2.so
+I/DEBUG   (   34): #01 4810ea68  4810ead8  
+I/DEBUG   (   34):     4810ea6c  4810eb40  
+I/DEBUG   (   34):     4810ea70  00000000  
+I/DEBUG   (   34):     4810ea74  00000000  
+I/DEBUG   (   34):     4810ea78  00000080  
+I/DEBUG   (   34):     4810ea7c  00000080  
+I/DEBUG   (   34):     4810ea80  4810eb20  
+I/DEBUG   (   34):     4810ea84  000000a8  
+I/DEBUG   (   34):     4810ea88  47eedebc  
+I/DEBUG   (   34):     4810ea8c  4810eb20  
+I/DEBUG   (   34):     4810ea90  00000000  
+I/DEBUG   (   34):     4810ea94  001df178  
+I/DEBUG   (   34):     4810ea98  00000000  
+I/DEBUG   (   34):     4810ea9c  47ee465f  /data/data/org.libsdl.app/lib/libmain.so
+I/BootReceiver(  378): Copying /data/tombstones/tombstone_01 to DropBox (SYSTEM_TOMBSTONE)
+D/Zygote  (  367): Process 740 terminated by signal (11)
+I/ActivityManager(  378): Process org.libsdl.app (pid 740) has died.
+W/ActivityManager(  378): Force removing ActivityRecord{4161e6c8 org.libsdl.app/.SDLActivity}: app died, no saved state
+W/NetworkManagementSocketTagger(  378): setKernelCountSet(10040, 0) failed with errno -2
+W/InputDispatcher(  378): channel '415b6bb8 org.libsdl.app/org.libsdl.app.SDLActivity (server)' ~ Consumer closed input channel or an error occurred.  events=0x8
+E/InputDispatcher(  378): channel '415b6bb8 org.libsdl.app/org.libsdl.app.SDLActivity (server)' ~ Channel is unrecoverably broken and will be disposed!
+I/WindowManager(  378): WIN DEATH: Window{415b7ed0 SurfaceView paused=false}
+I/WindowManager(  378): WIN DEATH: Window{415b6bb8 org.libsdl.app/org.libsdl.app.SDLActivity paused=false}
+W/InputDispatcher(  378): Attempted to unregister already unregistered input channel '415b6bb8 org.libsdl.app/org.libsdl.app.SDLActivity (server)'
+I/WindowManager(  378): WINDOW DIED Window{415b6bb8 org.libsdl.app/org.libsdl.app.SDLActivity paused=false}
+W/NetworkManagementSocketTagger(  378): setKernelCountSet(10005, 1) failed with errno -2
+I/WindowManager(  378): createSurface Window{416396d0 com.android.launcher/com.android.launcher2.Launcher paused=false}: DRAW NOW PENDING
+W/InputManagerService(  378): Got RemoteException sending setActive(false) notification to pid 740 uid 10040
+D/dalvikvm(  378): GC_CONCURRENT freed 623K, 6% free 12713K/13447K, paused 6ms+32ms
+D/dalvikvm(  378): GC_FOR_ALLOC freed 626K, 10% free 12129K/13447K, paused 98ms
+D/dalvikvm(  378): GC_FOR_ALLOC freed 185K, 9% free 12328K/13447K, paused 100ms
+D/dalvikvm(  378): GC_FOR_ALLOC freed 570K, 11% free 12078K/13447K, paused 69ms
