@@ -83,7 +83,8 @@ obj/local/armeabi/objs/main/codeffmpeg.o: jni/src/codeffmpeg.c \
  jni/src/../SDL/include/SDL_hints.h jni/src/../SDL/include/SDL_loadso.h \
  jni/src/../SDL/include/SDL_log.h jni/src/../SDL/include/SDL_power.h \
  jni/src/../SDL/include/SDL_render.h jni/src/../SDL/include/SDL_timer.h \
- jni/src/../SDL/include/SDL_version.h jni/src/../SDL/include/SDL_thread.h
+ jni/src/../SDL/include/SDL_version.h jni/src/../SDL/include/SDL_thread.h \
+ /home/orange/workspace/android/android-ndk-r7/platforms/android-8/arch-arm/usr/include/android/log.h
 
 jni/src/ffmpeg/libavcodec/avcodec.h:
 
@@ -304,3 +305,5 @@ jni/src/../SDL/include/SDL_timer.h:
 jni/src/../SDL/include/SDL_version.h:
 
 jni/src/../SDL/include/SDL_thread.h:
+
+/home/orange/workspace/android/android-ndk-r7/platforms/android-8/arch-arm/usr/include/android/log.h:

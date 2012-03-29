@@ -35,7 +35,8 @@ obj/local/armeabi/objs/main/__/SDL/src/main/android/SDL_android_main.o: \
  /home/orange/workspace/android/android-ndk-r7/platforms/android-8/arch-arm/usr/include/machine/internal_types.h \
  /home/orange/workspace/android/android-ndk-r7/platforms/android-8/arch-arm/usr/include/machine/limits.h \
  /home/orange/workspace/android/android-ndk-r7/platforms/android-8/arch-arm/usr/include/sys/syslimits.h \
- /home/orange/workspace/android/android-ndk-r7/platforms/android-8/arch-arm/usr/include/jni.h
+ /home/orange/workspace/android/android-ndk-r7/platforms/android-8/arch-arm/usr/include/jni.h \
+ /home/orange/workspace/android/android-ndk-r7/platforms/android-8/arch-arm/usr/include/android/log.h
 
 jni/src/../SDL/include/SDL_config.h:
 
@@ -112,3 +113,5 @@ jni/src/../SDL/include/SDL_config.h:
 /home/orange/workspace/android/android-ndk-r7/platforms/android-8/arch-arm/usr/include/sys/syslimits.h:
 
 /home/orange/workspace/android/android-ndk-r7/platforms/android-8/arch-arm/usr/include/jni.h:
+
+/home/orange/workspace/android/android-ndk-r7/platforms/android-8/arch-arm/usr/include/android/log.h:

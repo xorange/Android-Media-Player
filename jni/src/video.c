@@ -26,6 +26,10 @@ SDL_Renderer* renderer;
 SDL_Texture* txt;
 void** pixels;
 int* pitch;
+Uint32* format;
+int* access;
+int* w;
+int* h;
 SDL_Rect        rect;
 SDL_Event       event;
 
@@ -35,6 +39,10 @@ SDL_Event       event;
     return 1;
   }
 
+INFO("why");
+INFO(argv[0]);
+INFO(argv[1]);
+
 /*****************************************************/
 /* FFmpeg */
 /*****************************************************/
@@ -42,12 +50,15 @@ SDL_Event       event;
   av_register_all();
 
   if(av_open_input_file(&pFormatCtx, argv[1], NULL, 0, NULL)!=0)
+{
+INFO("av_open_file failed");
     return -1;
+}
   
   if(av_find_stream_info(pFormatCtx)<0)
     return -1;
   
-  dump_format(pFormatCtx, 0, argv[1], 0);
+  //dump_format(pFormatCtx, 0, argv[1], 0);
   
   videoStream=-1;
   for(i=0; i<pFormatCtx->nb_streams; i++)
@@ -103,12 +114,15 @@ INFO("render present done. white window");
 
 txt = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_YV12, SDL_TEXTUREACCESS_STREAMING, 128, 128);
 
+SDL_QueryTexture(txt, format, access, w, h);
+
 /*****************************************************/
 /* /SDL init */
 /*****************************************************/
 
 
-
+INFO("Getting into stream decode:");
+INFO(pFormatCtx->filename);
 /*****************************************************/
 /* video stream */
 /*****************************************************/
@@ -118,19 +132,20 @@ txt = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_YV12, SDL_TEXTUREACCESS_STREAM
     if(packet.stream_index==videoStream) {
       avcodec_decode_video2(pCodecCtx, pFrame, &frameFinished, 
 			   &packet);
-      
+INFO("getting packets");
       if(frameFinished) {
 //int
 SDL_LockTexture(txt, NULL, pixels, pitch);
+INFO("txt locked");
 
 //int
 //SDL_QueryTexturePixels(txt, pixels, pitch);
 
 	AVPicture pict;
 
-	pict.data[0] = pixels[0];
-	pict.data[1] = pixels[2];
-	pict.data[2] = pixels[1];
+	pict.data[0] = *(pixels + sizeof(*format) * 0);
+	pict.data[1] = *(pixels + sizeof(*format) * 2);
+	pict.data[2] = *(pixels + sizeof(*format) * 1);
 
 	pict.linesize[0] = pitch[0];
 	pict.linesize[1] = pitch[2];
@@ -151,15 +166,16 @@ rect.y = 0;
 rect.w = pCodecCtx->width;
 rect.h = pCodecCtx->height;
 //int
-//SDL_RenderCopy(renderer, txt, NULL, NULL);
-
+SDL_RenderCopy(renderer, txt, NULL, NULL);
+//SDL_RenderClear(renderer);
+//SDL_RenderPresent(renderer);
       
       }
 
     }
 
     av_free_packet(&packet);
-
+/*
     SDL_PollEvent(&event);
     switch(event.type) {
     case SDL_QUIT:
@@ -169,7 +185,7 @@ rect.h = pCodecCtx->height;
     default:
       break;
     }
-
+*/
   }
 
 /*****************************************************/

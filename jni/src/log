@@ -47,6 +47,9 @@ what i've done today:
 1. 
 try logcat in native code. didn't work. //ok
 
+#include <android/log.h>
+#define INFO(msg) __android_log_write(ANDROID_LOG_INFO,"video.c",msg);
+
 orange@orange:~/workspace/eclipseWorkspace/MediaPlayer/jni/src$ ~/workspace/android/android-sdk-linux/platform-tools/adb logcat > logcat
 
 
@@ -61,4 +64,66 @@ I/video.c (  740): render present done
 and window turns white, meaning previous logcats weren't sent. That is, argc >= 2, supported codec, SDL_Init success.
 Time at 8:30. make a cup of tea:)
 
+gotta work!
+time at 9. reviewed on the C array addressing, pretty sure about the way of using "pixels" and "pitch" in video.c is wrong now.
+
+blank half hour with nothing done. :(
+
+have to solve the problem: push a.mp4 before the app launches 'cause I've remembered there's something wrong about re-launching an SDL app.
+But currently re-launching the app is ok and keep getting "white window" followed by:
+org.libsdl.app libc Fatal signal 11 ...
+
+no SDL_QueryTexturePixels but with SDL_QueryTexture. what the hell.
+
+things didn't work in the video stream iterating.
+Things to do afternoon:
+1. find a way to debug. see the variables' value. DDMS.
+//gdbserver. so complex- -
+2. get it done.
+
+#
+weird. add this:
+INFO(argv[1]);
+but failed. "white window" still ok.
+
+with:
+char *str[2]; str[0] = "abc"; str[1] = "/sdcard/a.mp4"; 
+this way is ok:
+printf("%s\n%s\n", str[0], str[1]);
+this is ok, too:
+printf(str[1]);
+
+so i'm guessing argv[1] have the "/sdcard/a.mp4";
+indeed. 
+add:
+INFO(argv[0]);
+INFO(argv[1]);
+in SDL_android_main.cpp, got the expected output.
+
+well, adding
+INFO("why");
+figures it out. A constant string works kinda like a flush?
+
+#
+OMG
+
+#
+does ffmpeg really works?
+as for a specific video file, compare the data of AVPicture structure
+then try output a snapshot, a frame of it
+then try the whole stream
+BUT first, see if the pre-functions work. why the functions still work even without a real video file?????
+
+//using another project and I get to know that the file path is /mnt/sdcard/a.mp4, using this, when I use this: INFO(pFormatCtx->filename);, I get the expected filepath. Does this indicates that ffmpeg really works? I'll try a wrong path name and check.
+//well, it turns out using /sdcard/a.mp4 works the same. so it's not working fine. but still, it's working anyway. better than didn't work at all.
+
+#
+as for SDL
+how does the RenderCopy exactly works? how to output the video stream?
+
+
+--#
+3.29
+1. ffmpeg pre- functions did not works fine.
+2. as for SDL, how does the RenderCopy exactly works? how to output the video stream?
 

@@ -5,6 +5,10 @@
 #include "SDL.h"
 #include "SDL_thread.h"
 
+#include <android/log.h>
+
+#define INFO(msg) __android_log_write(ANDROID_LOG_INFO,"video.c",msg);
+
 int main(int argc, char *argv[])
 {
   AVFormatContext *pFormatCtx;
@@ -16,6 +20,8 @@ int main(int argc, char *argv[])
   int             frameFinished;
   float           aspect_ratio;
   static struct SwsContext *img_convert_ctx;
+
+INFO("declaration ends");
 
   // Register all formats and codecs
   av_register_all();
