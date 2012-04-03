@@ -23,12 +23,12 @@ int main(int argc, char *argv[])
 SDL_Window* window;
 SDL_Renderer* renderer;
 SDL_Texture* txt;
-int* pixels;
+void* pixels;
 int pitch;
-Uint32* format;
-int* access;
-int* w;
-int* h;
+Uint32 format;
+int access;
+int w;
+int h;
 SDL_Rect        rect;
 SDL_Event       event;
 
@@ -85,7 +85,7 @@ INFO("videoStream found");
   pFrame=avcodec_alloc_frame();
 
 /*****************************************************/
-/* FFmpeg */
+/* /FFmpeg */
 /*****************************************************/
 
 /*****************************************************/
@@ -107,11 +107,13 @@ window = SDL_CreateWindow("Texture - Window - Video",
 
 // We must call SDL_CreateRenderer in order for draw calls to affect this window.
 renderer = SDL_CreateRenderer(window, -1, 0);
+/*
 SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 SDL_RenderClear(renderer);
 SDL_RenderPresent(renderer);
 SDL_Delay(100);
 INFO("render present done. white window");
+*/
 
 
 //********** texture **********//
@@ -119,8 +121,9 @@ INFO("render present done. white window");
 txt = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_YV12, SDL_TEXTUREACCESS_STREAMING, 128, 128);
 
 if(txt == NULL) INFO("txt == NULL");
-//SDL_QueryTexture(txt, format, access, w, h);
-
+SDL_QueryTexture(txt, &format, &access, &w, &h);
+if(format == SDL_PIXELFORMAT_YV12) INFO("query txt, format: YV12");
+if(access == SDL_TEXTUREACCESS_STREAMING) INFO("query txt, access: STREAMING");
 /*****************************************************/
 /* /SDL init */
 /*****************************************************/
@@ -139,36 +142,37 @@ INFO("before this is the codec name. Getting into stream decode:");
       avcodec_decode_video2(pCodecCtx, pFrame, &frameFinished, 
 			   &packet);
       if(frameFinished) {
-INFO("frame decoded finished");
+INFO("frame decoded finished.");
 
 SDL_LockTexture(txt, NULL, &pixels, &pitch);
 
-
 	AVPicture pict;
-/*
-	pict.data[0] = *(pixels + sizeof(*format) * 0);
-	pict.data[1] = *(pixels + sizeof(*format) * 2);
-	pict.data[2] = *(pixels + sizeof(*format) * 1);
 
-	pict.linesize[0] = pitch[0];
-	pict.linesize[1] = pitch[2];
-	pict.linesize[2] = pitch[1];
+/*
+	pict.data[0] = (Uint32*)pixels + 0 * format;
+	pict.data[1] = (Uint32*)pixels + 2 * format;
+	pict.data[2] = (Uint32*)pixels + 1 * format;
+
+	//??? try it first
+	pict.linesize[0] = pitch;
+	pict.linesize[1] = pitch;
+	pict.linesize[2] = pitch;
 */
 
 	img_convert_ctx = sws_getContext(pCodecCtx->width, pCodecCtx->height,
  pCodecCtx->pix_fmt, pCodecCtx->width, pCodecCtx->height,
  PIX_FMT_YUV420P, SWS_BICUBIC, NULL, NULL, NULL);
 
-	sws_scale(img_convert_ctx, (const uint8_t* const*)pFrame->data, pFrame->linesize,
- 0, pCodecCtx->height, pict.data, pict.linesize);
+	sws_scale(img_convert_ctx, (const uint8_t* const*)pFrame->data, pFrame->linesize, 0, pCodecCtx->height, pict.data, pict.linesize);
 	
 SDL_UnlockTexture(txt);
 
-	
+/*
 rect.x = 0;
 rect.y = 0;
 rect.w = pCodecCtx->width;
 rect.h = pCodecCtx->height;
+*/
 
 //int
 //SDL_RenderCopy(renderer, txt, NULL, NULL);

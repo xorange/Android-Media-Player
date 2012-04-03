@@ -305,11 +305,26 @@ narrowed down to these two.
 -------------
 *pixels = swdata->planes[0] + rect->y * swdata->pitches[0] + rect->x * 2;
 *pitch = swdata->pitches[0];
+(SDL_SW_LockYUVTexture())
 -------------
 POOR PROGRAMMING!
 void** pixels and *pitch have to have a actual memory space to be *-ed.
 -------------
 Uint8 *planes[3];
 Uint16 pitches[3];
+(SDL_SW_YUVTexture)
 -------------
 done and all codes added removed.
+
+AVPicture:
+uint8_t * data [4] -> pixels -> planes, Uint8
+int linesize [4] -> pitch -> pitches, Uint16 / int
+
+
+SDL_QueryTexture...
+with
+SDL_QueryTexture(txt, &format, &access, &w, &h);
+this:
+sws_scale(img_convert_ctx, (const uint8_t* const*)pFrame->data, pFrame->linesize, 0, pCodecCtx->height, pict.data, pict.linesize);
+causes a Fatal Signal 11, code=2
+either works fine alone. Didn't know any connection between these two......WTF
