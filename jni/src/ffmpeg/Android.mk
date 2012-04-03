@@ -14,6 +14,7 @@ TARGET_ARCH_ABI :=armeabi-v7a
 SWSCALE_C_FILES = options.c \
 	rgb2rgb.c \
 	swscale.c \
+	swscale.h \
 	utils.c \
 	yuv2rgb.c \
 	swscale_unscaled.c \

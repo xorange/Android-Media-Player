@@ -9,6 +9,8 @@ import javax.microedition.khronos.egl.*;
 import android.app.*;
 import android.content.*;
 import android.view.*;
+import android.widget.Toast;
+import android.widget.VideoView;
 import android.os.*;
 import android.util.Log;
 import android.graphics.*;
@@ -18,6 +20,7 @@ import android.media.*;
 import android.hardware.*;
 import android.content.*;
 
+import java.io.File;
 import java.lang.*;
 
 
@@ -61,11 +64,19 @@ public class SDLActivity extends Activity {
         
         // So we can call stuff from static callbacks
         mSingleton = this;
-
-        // Set up the surface
+        
+        //openDialog();
+        
+     // Set up the surface
         mSurface = new SDLSurface(getApplication());
         setContentView(mSurface);
-        SurfaceHolder holder = mSurface.getHolder();
+        SurfaceHolder holder = mSurface.getHolder();	
+        
+        //mine
+//        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        //setContentView(R.layout.main);
+         
     }
 
     // Events
@@ -99,6 +110,108 @@ public class SDLActivity extends Activity {
             //Log.v("SDL", "Finished waiting for SDL thread");
         }
     }
+    
+//*********** MINE ************/
+    
+    protected void playVideo(String filePath) {
+		
+		Toast.makeText(getApplicationContext(), filePath, Toast.LENGTH_SHORT).show();
+		nativeSetFilePath(filePath);
+		
+//		// Set up the surface
+//        mSurface = new SDLSurface(getApplication());
+//        setContentView(mSurface);
+//        SurfaceHolder holder = mSurface.getHolder();		
+	}
+
+	private void openDialog() {
+		String filePath = Environment.getExternalStorageDirectory().getAbsolutePath();
+    	viewMediaFile(filePath);
+	}
+
+	private void viewMediaFile(final String path) {
+		
+    	CharSequence[] transItems = new CharSequence[1000];
+    	File directoryFile = new File(path);
+    	File[] file = directoryFile.listFiles();
+    	int i = 1;
+    	boolean isRootDirectory = isRoot(path);
+    	if(isRootDirectory)
+    	{
+    		i = 0;
+    	}
+    	else
+    	{
+    		transItems[0] = "...";
+    	}
+    	
+    	for(File mCurrentFile:file)
+    	{
+    		if(i >= 100)
+    		{
+    			break;
+    		}
+    		transItems[i]=mCurrentFile.getName();
+    		i++;
+    	}    	
+    	CharSequence[] transItems_1 = new CharSequence[i];
+    	int j= 0;
+    	for(j = 0 ; j < i;j++)
+    	{
+    		transItems_1[j] = transItems[j];
+    	}
+    	final CharSequence[] items =transItems_1;
+    	
+    	
+    	 AlertDialog.Builder builder = new AlertDialog.Builder(this);    	 
+    	 builder.setTitle("Select a media file");
+    	 
+    	 builder.setItems(items, new DialogInterface.OnClickListener() {
+    	 public void onClick(DialogInterface dialog, int item) {
+    		 if (items[item].toString()=="...")
+    		 {
+    			 String filePath = addUpperDirectory(path);
+    			 viewMediaFile(filePath);
+        		 Toast.makeText(getApplicationContext(), items[item], Toast.LENGTH_SHORT).show();
+    		 }
+    		 else if (items[item].toString().endsWith(".mp4"))
+    		 {
+    			 playVideo(path +"/"+ items[item]);
+    			 Toast.makeText(getApplicationContext(), "play: " + path +"/"+ items[item], Toast.LENGTH_SHORT).show();
+    		 }
+    		 else
+    		 {
+	    		 String filePath = path +"/"+ items[item];
+	    		 viewMediaFile(filePath);
+	    		 Toast.makeText(getApplicationContext(), items[item], Toast.LENGTH_SHORT).show();
+    		 }
+    	 }
+
+    	 });
+    	 builder.show();
+    	   
+	}
+
+	private String addUpperDirectory(String filePath) {
+		int i = filePath.lastIndexOf("/");
+    	if(i==0)
+    	{
+    		return "ERROR_404";
+    	}
+    	return filePath.substring(0, i);
+	}
+
+	private boolean isRoot(String filePath) {
+		if(addUpperDirectory(filePath)=="ERROR_404")
+    	{
+    		return true;
+    	}
+    	return false;
+	}
+	
+	public static native String play(String filePath);
+    
+    //*********** /MINE ************/
 
     // Messages from the SDLMain thread
     static int COMMAND_CHANGE_TITLE = 1;
@@ -121,6 +234,9 @@ public class SDLActivity extends Activity {
     }
 
     // C functions we call
+    private static native void nativeSetFilePath(String filePath);
+    
+    
     public static native void nativeInit();
     public static native void nativeQuit();
     public static native void nativePause();
@@ -389,7 +505,8 @@ public class SDLActivity extends Activity {
 */
 class SDLMain implements Runnable {
     public void run() {
-        // Runs SDL_main()
+    	
+    	// Runs SDL_main()
         SDLActivity.nativeInit();
 
         //Log.v("SDL", "SDL thread terminated");
@@ -418,7 +535,7 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback,
         setFocusableInTouchMode(true);
         requestFocus();
         setOnKeyListener(this); 
-        setOnTouchListener(this);   
+        setOnTouchListener(this);
 
         mSensorManager = (SensorManager)context.getSystemService("sensor");  
     }

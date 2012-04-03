@@ -25,7 +25,7 @@ add: System.loadLibrary("ffmpeg"); in java. solved.
 !!!!!---IMPORTANT---ALL TESTED UNDER ANDROID 4.0 AVD INSTANCE---!!!!!
 
 !!!!!---IMPORTANT---TODO LIST---!!!!!
-TODO: //all cleared.
+TODO:
 1. video.c //compiled with ffmpeg and sdl, video stream.
 1.1 how to log in native code?
 SDL_SetError(""); //try this
@@ -36,6 +36,8 @@ SDL_SetError(""); //try this
 //adb push. ok
 1.4 how's the file system of android?
 //file located under /sdcard. ok
+
+//above done
 
 2. asy- video and audio stream.
 3. dangon codes, syn- video and audio
@@ -127,3 +129,173 @@ how does the RenderCopy exactly works? how to output the video stream?
 1. ffmpeg pre- functions did not works fine.
 2. as for SDL, how does the RenderCopy exactly works? how to output the video stream?
 
+
+--#
+3.31
+yestoday I did nothing. shame. Played SANGO11 instread. It was fun though...
+
+at date 3.30 I create a new project( FFmpegPlayer ) to test ffmpeg. It works fine. The sign of it working fine is that it recognize the format of a.mp4 and AVCodec->name = "H. 264".
+
+So here comes the question: why ffmpeg with SDL failed?
+In testff.c there're only ffmpeg. Works fine and got 'H 264' as well. The framework is ok. So maybe there's something with the SDL function call?
+
+One important thing:
+in project FFmpegPlayer, the file path is passed from Java to C indicating the target video file.
+in project MediaPlayer, which is with SDL and ffmpeg, the file path currently is IN THE SOURCE CODE, "/mnt/sdcard/a.mp4", passing from SDL_android.main.cpp to main function in argv[1].
+
+and one weird thing of FFmpegPlayer. compiled error on function "sws_getContext" and "sws_scale" but they can be compiled in MediaPlayer. didn't know why. ignored.
+
+keep working.
+white window and still frame decoded success. good.
+
+ok i think i know why earlier I'll consider ffmpeg decoding wrong. Now in MediaPlayer I got ffmpeg and SDL working fine without any SDL code after a frame is decoded. Previously I have SDL code in it and the log only records the "packets". So I only got 3 "packets done" and program terminates. That means, SDL failed at presenting a frame, but ffmpeg works fine.
+Hope I'm right.
+
+It seems that it's the SDL_LockTexture function went wrong. Firstly I thought it was not usable. But then I double check it and I notice there's a parameter that is "void** pixels". I guess there's something to do with the void pointer.
+
+just to be sure, now got 1 "frame decoded finished" and failed. the logcat was:
+A 689 org.libsdl.app libc Fatal signal 11 (SIGSEGV) at 0x00000000 (code=1)
+
+SDL_LockTexture is in jni/SDL/src/render/SDL_render.c, line 761
+crazily I changed it and add logcat...
+here:
+-------------
+int
+SDL_LockTexture(SDL_Texture * texture, const SDL_Rect * rect,
+                void **pixels, int *pitch)
+{
+INFO("in locktexture");
+    SDL_Renderer *renderer;
+    SDL_Rect full_rect;
+
+    CHECK_TEXTURE_MAGIC(texture, -1);
+
+    if (texture->access != SDL_TEXTUREACCESS_STREAMING) {
+        SDL_SetError("SDL_LockTexture(): texture must be streaming");
+        return -1;
+    }
+INFO("lock txt 1");
+    if (!rect) {
+        full_rect.x = 0;
+        full_rect.y = 0;
+        full_rect.w = texture->w;
+        full_rect.h = texture->h;
+        rect = &full_rect;
+    }
+INFO("lock txt 2");
+    if (texture->yuv) {
+INFO("yuv");
+        return SDL_LockTextureYUV(texture, rect, pixels, pitch);
+    } else if (texture->native) {
+        return SDL_LockTextureNative(texture, rect, pixels, pitch);
+    } else {
+        renderer = texture->renderer;
+        return renderer->LockTexture(renderer, texture, rect, pixels, pitch);
+    }
+INFO("end locktexture");
+}
+-------------
+#
+logcat ends at "lock txt 2"
+logcat ends at "yuv"
+logcat ends at "lock yuv, getting into SDL_SW_LockYUVTexture"
+-------------
+static int
+SDL_LockTextureYUV(SDL_Texture * texture, const SDL_Rect * rect,
+                   void **pixels, int *pitch)
+{
+INFO("lock yuv, getting into SDL_SW_LockYUVTexture");
+    return SDL_SW_LockYUVTexture(texture->yuv, rect, pixels, pitch);
+}
+-------------
+#
+logcat cleared but INFO("end locktexture"); in SDL_LockTexture()
+
+SDL_SW_LockYUVTexture() is in SDL_yuv_sw.c, line 1190
+-------------
+int
+SDL_SW_LockYUVTexture(SDL_SW_YUVTexture * swdata, const SDL_Rect * rect,
+                      void **pixels, int *pitch)
+{
+INFO("sw lock yuv");
+    switch (swdata->format) {
+    case SDL_PIXELFORMAT_YV12:
+    case SDL_PIXELFORMAT_IYUV:
+        if (rect
+            && (rect->x != 0 || rect->y != 0 || rect->w != swdata->w
+                || rect->h != swdata->h)) {
+            SDL_SetError
+                ("YV12 and IYUV textures only support full surface locks");
+            return -1;
+        }
+        break;
+    }
+INFO("sw lock yuv 1");
+    *pixels = swdata->planes[0] + rect->y * swdata->pitches[0] + rect->x * 2;
+    *pitch = swdata->pitches[0];
+INFO("sw lock yuv end");
+    return 0;
+}
+-------------
+logcat ends at "sw lock yuv"
+logcat ends at "sw lock yuv 1"
+
+well, so it's the void pointer's problem......
+*pixels and *pitch, disabling either ran into error. Init problem?
+swdata is a pointer with type SDL_SW_YUVTexture
+-------------
+struct SDL_SW_YUVTexture
+{
+    Uint32 format;
+    Uint32 target_format;
+    int w, h;
+    Uint8 *pixels;
+    int *colortab;
+    Uint32 *rgb_2_pix;
+    void (*Display1X) (int *colortab, Uint32 * rgb_2_pix,
+                       unsigned char *lum, unsigned char *cr,
+                       unsigned char *cb, unsigned char *out,
+                       int rows, int cols, int mod);
+    void (*Display2X) (int *colortab, Uint32 * rgb_2_pix,
+                       unsigned char *lum, unsigned char *cr,
+                       unsigned char *cb, unsigned char *out,
+                       int rows, int cols, int mod);
+
+    /* These are just so we don't have to allocate them separately */
+Uint16 pitches[3];
+Uint8 *planes[3];
+
+    /* This is a temporary surface in case we have to stretch copy */
+    SDL_Surface *stretch;
+    SDL_Surface *display;
+};
+-------------
+struct SDL_Texture
+{
+    const void *magic;
+    Uint32 format;              /**< The pixel format of the texture */
+    int access;                 /**< SDL_TextureAccess */
+    int w;                      /**< The width of the texture */
+    int h;                      /**< The height of the texture */
+    int modMode;                /**< The texture modulation mode */
+    SDL_BlendMode blendMode;    /**< The texture blend mode */
+    Uint8 r, g, b, a;           /**< Texture modulation values */
+
+    SDL_Renderer *renderer;
+
+    /* Support for formats not supported directly by the renderer */
+    SDL_Texture *native;
+SDL_SW_YUVTexture *yuv;
+    void *pixels;
+    int pitch;
+    SDL_Rect locked_rect;
+
+    void *driverdata;           /**< Driver specific texture representation */
+
+    SDL_Texture *prev;
+    SDL_Texture *next;
+};
+(SDL/src/SDL_sysrender.h)
+-------------
+
+(all codes added removed, all cleaned.)
