@@ -23,13 +23,12 @@ int main(int argc, char *argv[])
 SDL_Window* window;
 SDL_Renderer* renderer;
 SDL_Texture* txt;
-void** pixels;
-int* pitch;
+int* pixels;
+int pitch;
 Uint32* format;
 int* access;
 int* w;
 int* h;
-int locktxt;
 SDL_Rect        rect;
 SDL_Event       event;
 
@@ -111,16 +110,16 @@ renderer = SDL_CreateRenderer(window, -1, 0);
 SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 SDL_RenderClear(renderer);
 SDL_RenderPresent(renderer);
-//SDL_Delay(100);
+SDL_Delay(100);
 INFO("render present done. white window");
 
 
 //********** texture **********//
 
-
 txt = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_YV12, SDL_TEXTUREACCESS_STREAMING, 128, 128);
 
-SDL_QueryTexture(txt, format, access, w, h);
+if(txt == NULL) INFO("txt == NULL");
+//SDL_QueryTexture(txt, format, access, w, h);
 
 /*****************************************************/
 /* /SDL init */
@@ -142,16 +141,7 @@ INFO("before this is the codec name. Getting into stream decode:");
       if(frameFinished) {
 INFO("frame decoded finished");
 
-//int
-locktxt = SDL_LockTexture(txt, NULL, pixels, pitch);
-if(locktxt != 0)
-{
-INFO("txt locked failed. SDL_GetError:");
-INFO(SDL_GetError);
-INFO("break;");
-break;
-}
-//INFO("txt locked");
+SDL_LockTexture(txt, NULL, &pixels, &pitch);
 
 
 	AVPicture pict;

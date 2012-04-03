@@ -285,7 +285,9 @@ struct SDL_Texture
 
     /* Support for formats not supported directly by the renderer */
     SDL_Texture *native;
+
 SDL_SW_YUVTexture *yuv;
+
     void *pixels;
     int pitch;
     SDL_Rect locked_rect;
@@ -296,6 +298,18 @@ SDL_SW_YUVTexture *yuv;
     SDL_Texture *next;
 };
 (SDL/src/SDL_sysrender.h)
--------------
 
-(all codes added removed, all cleaned.)
+
+4.3
+narrowed down to these two.
+-------------
+*pixels = swdata->planes[0] + rect->y * swdata->pitches[0] + rect->x * 2;
+*pitch = swdata->pitches[0];
+-------------
+POOR PROGRAMMING!
+void** pixels and *pitch have to have a actual memory space to be *-ed.
+-------------
+Uint8 *planes[3];
+Uint16 pitches[3];
+-------------
+done and all codes added removed.

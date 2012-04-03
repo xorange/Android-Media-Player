@@ -36,8 +36,7 @@ obj/local/armeabi/objs/SDL2/src/render/SDL_yuv_sw.o: \
  jni/SDL/include/SDL_pixels.h jni/SDL/include/SDL_rect.h \
  jni/SDL/include/SDL_error.h jni/SDL/include/SDL_rwops.h \
  jni/SDL/include/SDL_surface.h jni/SDL/include/SDL_blendmode.h \
- jni/SDL/include/SDL_cpuinfo.h jni/SDL/src/render/SDL_yuv_sw_c.h \
- /home/orange/workspace/android/android-ndk-r7/platforms/android-8/arch-arm/usr/include/android/log.h
+ jni/SDL/include/SDL_cpuinfo.h jni/SDL/src/render/SDL_yuv_sw_c.h
 
 jni/SDL/include/SDL_config.h:
 
@@ -128,5 +127,3 @@ jni/SDL/include/SDL_blendmode.h:
 jni/SDL/include/SDL_cpuinfo.h:
 
 jni/SDL/src/render/SDL_yuv_sw_c.h:
-
-/home/orange/workspace/android/android-ndk-r7/platforms/android-8/arch-arm/usr/include/android/log.h:
