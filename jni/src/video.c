@@ -23,8 +23,8 @@ int main(int argc, char *argv[])
 SDL_Window* window;
 SDL_Renderer* renderer;
 SDL_Texture* txt;
-void* pixels;
-int pitch;
+Uint8* pixels;
+Uint16 pitch;
 Uint32 format;
 int access;
 int w;
@@ -118,12 +118,7 @@ INFO("render present done. white window");
 
 //********** texture **********//
 
-txt = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_YV12, SDL_TEXTUREACCESS_STREAMING, 128, 128);
-
-if(txt == NULL) INFO("txt == NULL");
-SDL_QueryTexture(txt, &format, &access, &w, &h);
-if(format == SDL_PIXELFORMAT_YV12) INFO("query txt, format: YV12");
-if(access == SDL_TEXTUREACCESS_STREAMING) INFO("query txt, access: STREAMING");
+txt = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_YV12, SDL_TEXTUREACCESS_STREAMING, pCodecCtx->width, pCodecCtx->height);
 /*****************************************************/
 /* /SDL init */
 /*****************************************************/
@@ -148,16 +143,16 @@ SDL_LockTexture(txt, NULL, &pixels, &pitch);
 
 	AVPicture pict;
 
-/*
-	pict.data[0] = (Uint32*)pixels + 0 * format;
-	pict.data[1] = (Uint32*)pixels + 2 * format;
-	pict.data[2] = (Uint32*)pixels + 1 * format;
+
+	pict.data[0] = pixels[0];
+	pict.data[1] = pixels[2];
+	pict.data[2] = pixels[1];
 
 	//??? try it first
 	pict.linesize[0] = pitch;
 	pict.linesize[1] = pitch;
 	pict.linesize[2] = pitch;
-*/
+
 
 	img_convert_ctx = sws_getContext(pCodecCtx->width, pCodecCtx->height,
  pCodecCtx->pix_fmt, pCodecCtx->width, pCodecCtx->height,
@@ -175,7 +170,7 @@ rect.h = pCodecCtx->height;
 */
 
 //int
-//SDL_RenderCopy(renderer, txt, NULL, NULL);
+SDL_RenderCopy(renderer, txt, NULL, NULL);
 //SDL_RenderClear(renderer);
 //SDL_RenderPresent(renderer);
       
