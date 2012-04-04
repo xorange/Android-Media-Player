@@ -1,0 +1,224 @@
+logb is for logging the presenting debug process.
+
+in tutorial02, SDL1.2, the flow is:
+setVideoMode()
+CreateOverlay()
+each decoded frame {
+lockOverlay()
+img_convert..
+unlock()
+Display( overlay ) ---> overlay->hwfunc->Display.
+}
+
+####################################################
+img buffer
+####################################################
+
+-------------
+typedef struct{
+  Uint32 format;
+  int w, h;
+  int planes;
+  Uint16 *pitches;
+  Uint8 **pixels;
+  Uint32 hw_overlay:1;
+} SDL_Overlay;
+-------------
+struct SDL_SW_YUVTexture
+{
+    Uint32 format;
+    Uint32 target_format;
+    int w, h;
+    Uint8 *pixels;
+    int *colortab;
+    Uint32 *rgb_2_pix;
+    void (*Display1X) (int *colortab, Uint32 * rgb_2_pix,
+                       unsigned char *lum, unsigned char *cr,
+                       unsigned char *cb, unsigned char *out,
+                       int rows, int cols, int mod);
+    void (*Display2X) (int *colortab, Uint32 * rgb_2_pix,
+                       unsigned char *lum, unsigned char *cr,
+                       unsigned char *cb, unsigned char *out,
+                       int rows, int cols, int mod);
+
+    /* These are just so we don't have to allocate them separately */
+Uint16 pitches[3];
+Uint8 *planes[3];
+
+    /* This is a temporary surface in case we have to stretch copy */
+    SDL_Surface *stretch;
+    SDL_Surface *display;
+};
+-------------
+struct SDL_Texture
+{
+    const void *magic;
+    Uint32 format;              /**< The pixel format of the texture */
+    int access;                 /**< SDL_TextureAccess */
+    int w;                      /**< The width of the texture */
+    int h;                      /**< The height of the texture */
+    int modMode;                /**< The texture modulation mode */
+    SDL_BlendMode blendMode;    /**< The texture blend mode */
+    Uint8 r, g, b, a;           /**< Texture modulation values */
+
+    SDL_Renderer *renderer;
+
+    /* Support for formats not supported directly by the renderer */
+    SDL_Texture *native;
+
+SDL_SW_YUVTexture *yuv;
+
+    void *pixels;
+    int pitch;
+    SDL_Rect locked_rect;
+
+    void *driverdata;           /**< Driver specific texture representation */
+
+    SDL_Texture *prev;
+    SDL_Texture *next;
+};
+(SDL/src/SDL_sysrender.h)
+
+so I assume Texture with format YV12 is like YUVOverlay.
+
+####################################################
+/img buffer
+####################################################
+
+
+####################################################
+displaying device
+####################################################
+
+setVideoMode()
+is very complicated...
+
+
+haven't found overlay->hwfunc->Display().
+
+
+-------------
+struct SDL_Renderer
+{
+    const void *magic;
+
+    void (*WindowEvent) (SDL_Renderer * renderer, const SDL_WindowEvent *event);
+    int (*CreateTexture) (SDL_Renderer * renderer, SDL_Texture * texture);
+    int (*SetTextureColorMod) (SDL_Renderer * renderer,
+                               SDL_Texture * texture);
+    int (*SetTextureAlphaMod) (SDL_Renderer * renderer,
+                               SDL_Texture * texture);
+    int (*SetTextureBlendMode) (SDL_Renderer * renderer,
+                                SDL_Texture * texture);
+    int (*UpdateTexture) (SDL_Renderer * renderer, SDL_Texture * texture,
+                          const SDL_Rect * rect, const void *pixels,
+                          int pitch);
+    int (*LockTexture) (SDL_Renderer * renderer, SDL_Texture * texture,
+                        const SDL_Rect * rect, void **pixels, int *pitch);
+    void (*UnlockTexture) (SDL_Renderer * renderer, SDL_Texture * texture);
+    int (*SetRenderTarget) (SDL_Renderer * renderer, SDL_Texture * texture);
+    int (*UpdateViewport) (SDL_Renderer * renderer);
+    int (*RenderClear) (SDL_Renderer * renderer);
+    int (*RenderDrawPoints) (SDL_Renderer * renderer, const SDL_Point * points,
+                             int count);
+    int (*RenderDrawLines) (SDL_Renderer * renderer, const SDL_Point * points,
+                            int count);
+    int (*RenderFillRects) (SDL_Renderer * renderer, const SDL_Rect * rects,
+                            int count);
+    int (*RenderCopy) (SDL_Renderer * renderer, SDL_Texture * texture,
+                       const SDL_Rect * srcrect, const SDL_Rect * dstrect);
+    int (*RenderReadPixels) (SDL_Renderer * renderer, const SDL_Rect * rect,
+                             Uint32 format, void * pixels, int pitch);
+    void (*RenderPresent) (SDL_Renderer * renderer);
+    void (*DestroyTexture) (SDL_Renderer * renderer, SDL_Texture * texture);
+
+    void (*DestroyRenderer) (SDL_Renderer * renderer);
+
+    /* The current renderer info */
+    SDL_RendererInfo info;
+
+    /* The window associated with the renderer */
+    SDL_Window *window;
+    SDL_bool hidden;
+    SDL_bool resized;
+
+    /* The drawable area within the window */
+    SDL_Rect viewport;
+    SDL_Rect viewport_backup;
+
+    /* The list of textures */
+    SDL_Texture *textures;
+    SDL_Texture *target;
+
+    Uint8 r, g, b, a;                   /**< Color for drawing operations values */
+    SDL_BlendMode blendMode;            /**< The drawing blend mode */
+
+    void *driverdata;
+};
+
+-------------
+int
+SDL_RenderCopy(SDL_Renderer * renderer, SDL_Texture * texture,
+               const SDL_Rect * srcrect, const SDL_Rect * dstrect)
+{
+    SDL_Window *window;
+    SDL_Rect real_srcrect;
+    SDL_Rect real_dstrect;
+
+    CHECK_RENDERER_MAGIC(renderer, -1);
+    CHECK_TEXTURE_MAGIC(texture, -1);
+
+    if (renderer != texture->renderer) {
+        SDL_SetError("Texture was not created with this renderer");
+        return -1;
+    }
+    window = renderer->window;
+
+    real_srcrect.x = 0;
+    real_srcrect.y = 0;
+    real_srcrect.w = texture->w;
+    real_srcrect.h = texture->h;
+    if (srcrect) {
+        if (!SDL_IntersectRect(srcrect, &real_srcrect, &real_srcrect)) {
+            return 0;
+        }
+    }
+
+    real_dstrect.x = 0;
+    real_dstrect.y = 0;
+    real_dstrect.w = renderer->viewport.w;
+    real_dstrect.h = renderer->viewport.h;
+    if (dstrect) {
+        if (!SDL_IntersectRect(dstrect, &real_dstrect, &real_dstrect)) {
+            return 0;
+        }
+        /* Clip srcrect by the same amount as dstrect was clipped */
+        if (dstrect->w != real_dstrect.w) {
+            int deltax = (real_dstrect.x - dstrect->x);
+            int deltaw = (real_dstrect.w - dstrect->w);
+            real_srcrect.x += (deltax * real_srcrect.w) / dstrect->w;
+            real_srcrect.w += (deltaw * real_srcrect.w) / dstrect->w;
+        }
+        if (dstrect->h != real_dstrect.h) {
+            int deltay = (real_dstrect.y - dstrect->y);
+            int deltah = (real_dstrect.h - dstrect->h);
+            real_srcrect.y += (deltay * real_srcrect.h) / dstrect->h;
+            real_srcrect.h += (deltah * real_srcrect.h) / dstrect->h;
+        }
+    }
+
+    if (texture->native) {
+        texture = texture->native;
+    }
+
+    /* Don't draw while we're hidden */
+    if (renderer->hidden) {
+        return 0;
+    }
+    return renderer->RenderCopy(renderer, texture, &real_srcrect,
+                                &real_dstrect);
+}
+-------------
+####################################################
+/displaying device
+####################################################

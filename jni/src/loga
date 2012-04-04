@@ -1,0 +1,335 @@
+--#3.27
+sth weird happen. run failed on voidmain.c.
+
+not the values/strings/app_name problem.
+
+/SDL works. I use SDL/SDLActivity, failed. use /SDL built libs, failed.
+So I'm pretty sure it's not the code problem.
+
+
+
+
+I used the SDL folder and removed the previous MediaPlayer project entirely and I've got the brand new MediaPlayer project with the content same as the SDL project and then I run function tests step by step to use it.
+
+Now it seems that the previous problem may be related to my didn't run make clean.
+
+The basic function tests:
+1. voidmain.c //void
+//ok
+2. sdltest.c //red window
+//ok
+3. codeffmpeg.c //void, compiled with ffmpeg //problem running, even with being reduced to a void main.
+add: System.loadLibrary("ffmpeg"); in java. solved.
+//ok
+
+!!!!!---IMPORTANT---ALL TESTED UNDER ANDROID 4.0 AVD INSTANCE---!!!!!
+
+!!!!!---IMPORTANT---TODO LIST---!!!!!
+TODO:
+1. video.c //compiled with ffmpeg and sdl, video stream.
+1.1 how to log in native code?
+SDL_SetError(""); //try this
+//with logcat, tested ok
+1.2 how to debug with the emulator on?
+//with logcat is ok. DDMS later.
+1.3 how to send a video file?
+//adb push. ok
+1.4 how's the file system of android?
+//file located under /sdcard. ok
+
+//above done
+
+2. asy- video and audio stream.
+3. dangon codes, syn- video and audio
+4. another Activity
+!!!!!---/IMPORTANT---/TODO LIST---!!!!!
+
+--#3.28
+what i've done today:
+1. 
+try logcat in native code. didn't work. //ok
+
+#include <android/log.h>
+#define INFO(msg) __android_log_write(ANDROID_LOG_INFO,"video.c",msg);
+
+orange@orange:~/workspace/eclipseWorkspace/MediaPlayer/jni/src$ ~/workspace/android/android-sdk-linux/platform-tools/adb logcat > logcat
+
+
+2. 
+
+orange@orange:~/workspace/eclipseWorkspace/MediaPlayer/jni/src$ ~/workspace/android/android-sdk-linux/platform-tools/adb push a.mp4 /sdcard/a.mp4
+1941 KB/s (38342915 bytes in 19.289s)
+
+
+logcat with only one "video.c" tag:
+I/video.c (  740): render present done
+and window turns white, meaning previous logcats weren't sent. That is, argc >= 2, supported codec, SDL_Init success.
+Time at 8:30. make a cup of tea:)
+
+gotta work!
+time at 9. reviewed on the C array addressing, pretty sure about the way of using "pixels" and "pitch" in video.c is wrong now.
+
+blank half hour with nothing done. :(
+
+have to solve the problem: push a.mp4 before the app launches 'cause I've remembered there's something wrong about re-launching an SDL app.
+But currently re-launching the app is ok and keep getting "white window" followed by:
+org.libsdl.app libc Fatal signal 11 ...
+
+no SDL_QueryTexturePixels but with SDL_QueryTexture. what the hell.
+
+things didn't work in the video stream iterating.
+Things to do afternoon:
+1. find a way to debug. see the variables' value. DDMS.
+//gdbserver. so complex- -
+2. get it done.
+
+#
+weird. add this:
+INFO(argv[1]);
+but failed. "white window" still ok.
+
+with:
+char *str[2]; str[0] = "abc"; str[1] = "/sdcard/a.mp4"; 
+this way is ok:
+printf("%s\n%s\n", str[0], str[1]);
+this is ok, too:
+printf(str[1]);
+
+so i'm guessing argv[1] have the "/sdcard/a.mp4";
+indeed. 
+add:
+INFO(argv[0]);
+INFO(argv[1]);
+in SDL_android_main.cpp, got the expected output.
+
+well, adding
+INFO("why");
+figures it out. A constant string works kinda like a flush?
+
+#
+OMG
+
+#
+does ffmpeg really works?
+as for a specific video file, compare the data of AVPicture structure
+then try output a snapshot, a frame of it
+then try the whole stream
+BUT first, see if the pre-functions work. why the functions still work even without a real video file?????
+
+//using another project and I get to know that the file path is /mnt/sdcard/a.mp4, using this, when I use this: INFO(pFormatCtx->filename);, I get the expected filepath. Does this indicates that ffmpeg really works? I'll try a wrong path name and check.
+//well, it turns out using /sdcard/a.mp4 works the same. so it's not working fine. but still, it's working anyway. better than didn't work at all.
+
+#
+as for SDL
+how does the RenderCopy exactly works? how to output the video stream?
+
+
+--#
+3.29
+1. ffmpeg pre- functions did not works fine.
+2. as for SDL, how does the RenderCopy exactly works? how to output the video stream?
+
+
+--#
+3.31
+yestoday I did nothing. shame. Played SANGO11 instread. It was fun though...
+
+at date 3.30 I create a new project( FFmpegPlayer ) to test ffmpeg. It works fine. The sign of it working fine is that it recognize the format of a.mp4 and AVCodec->name = "H. 264".
+
+So here comes the question: why ffmpeg with SDL failed?
+In testff.c there're only ffmpeg. Works fine and got 'H 264' as well. The framework is ok. So maybe there's something with the SDL function call?
+
+One important thing:
+in project FFmpegPlayer, the file path is passed from Java to C indicating the target video file.
+in project MediaPlayer, which is with SDL and ffmpeg, the file path currently is IN THE SOURCE CODE, "/mnt/sdcard/a.mp4", passing from SDL_android.main.cpp to main function in argv[1].
+
+and one weird thing of FFmpegPlayer. compiled error on function "sws_getContext" and "sws_scale" but they can be compiled in MediaPlayer. didn't know why. ignored.
+
+keep working.
+white window and still frame decoded success. good.
+
+ok i think i know why earlier I'll consider ffmpeg decoding wrong. Now in MediaPlayer I got ffmpeg and SDL working fine without any SDL code after a frame is decoded. Previously I have SDL code in it and the log only records the "packets". So I only got 3 "packets done" and program terminates. That means, SDL failed at presenting a frame, but ffmpeg works fine.
+Hope I'm right.
+
+It seems that it's the SDL_LockTexture function went wrong. Firstly I thought it was not usable. But then I double check it and I notice there's a parameter that is "void** pixels". I guess there's something to do with the void pointer.
+
+just to be sure, now got 1 "frame decoded finished" and failed. the logcat was:
+A 689 org.libsdl.app libc Fatal signal 11 (SIGSEGV) at 0x00000000 (code=1)
+
+SDL_LockTexture is in jni/SDL/src/render/SDL_render.c, line 761
+crazily I changed it and add logcat...
+here:
+-------------
+int
+SDL_LockTexture(SDL_Texture * texture, const SDL_Rect * rect,
+                void **pixels, int *pitch)
+{
+INFO("in locktexture");
+    SDL_Renderer *renderer;
+    SDL_Rect full_rect;
+
+    CHECK_TEXTURE_MAGIC(texture, -1);
+
+    if (texture->access != SDL_TEXTUREACCESS_STREAMING) {
+        SDL_SetError("SDL_LockTexture(): texture must be streaming");
+        return -1;
+    }
+INFO("lock txt 1");
+    if (!rect) {
+        full_rect.x = 0;
+        full_rect.y = 0;
+        full_rect.w = texture->w;
+        full_rect.h = texture->h;
+        rect = &full_rect;
+    }
+INFO("lock txt 2");
+    if (texture->yuv) {
+INFO("yuv");
+        return SDL_LockTextureYUV(texture, rect, pixels, pitch);
+    } else if (texture->native) {
+        return SDL_LockTextureNative(texture, rect, pixels, pitch);
+    } else {
+        renderer = texture->renderer;
+        return renderer->LockTexture(renderer, texture, rect, pixels, pitch);
+    }
+INFO("end locktexture");
+}
+-------------
+#
+logcat ends at "lock txt 2"
+logcat ends at "yuv"
+logcat ends at "lock yuv, getting into SDL_SW_LockYUVTexture"
+-------------
+static int
+SDL_LockTextureYUV(SDL_Texture * texture, const SDL_Rect * rect,
+                   void **pixels, int *pitch)
+{
+INFO("lock yuv, getting into SDL_SW_LockYUVTexture");
+    return SDL_SW_LockYUVTexture(texture->yuv, rect, pixels, pitch);
+}
+-------------
+#
+logcat cleared but INFO("end locktexture"); in SDL_LockTexture()
+
+SDL_SW_LockYUVTexture() is in SDL_yuv_sw.c, line 1190
+-------------
+int
+SDL_SW_LockYUVTexture(SDL_SW_YUVTexture * swdata, const SDL_Rect * rect,
+                      void **pixels, int *pitch)
+{
+INFO("sw lock yuv");
+    switch (swdata->format) {
+    case SDL_PIXELFORMAT_YV12:
+    case SDL_PIXELFORMAT_IYUV:
+        if (rect
+            && (rect->x != 0 || rect->y != 0 || rect->w != swdata->w
+                || rect->h != swdata->h)) {
+            SDL_SetError
+                ("YV12 and IYUV textures only support full surface locks");
+            return -1;
+        }
+        break;
+    }
+INFO("sw lock yuv 1");
+    *pixels = swdata->planes[0] + rect->y * swdata->pitches[0] + rect->x * 2;
+    *pitch = swdata->pitches[0];
+INFO("sw lock yuv end");
+    return 0;
+}
+-------------
+logcat ends at "sw lock yuv"
+logcat ends at "sw lock yuv 1"
+
+well, so it's the void pointer's problem......
+*pixels and *pitch, disabling either ran into error. Init problem?
+swdata is a pointer with type SDL_SW_YUVTexture
+-------------
+struct SDL_SW_YUVTexture
+{
+    Uint32 format;
+    Uint32 target_format;
+    int w, h;
+    Uint8 *pixels;
+    int *colortab;
+    Uint32 *rgb_2_pix;
+    void (*Display1X) (int *colortab, Uint32 * rgb_2_pix,
+                       unsigned char *lum, unsigned char *cr,
+                       unsigned char *cb, unsigned char *out,
+                       int rows, int cols, int mod);
+    void (*Display2X) (int *colortab, Uint32 * rgb_2_pix,
+                       unsigned char *lum, unsigned char *cr,
+                       unsigned char *cb, unsigned char *out,
+                       int rows, int cols, int mod);
+
+    /* These are just so we don't have to allocate them separately */
+Uint16 pitches[3];
+Uint8 *planes[3];
+
+    /* This is a temporary surface in case we have to stretch copy */
+    SDL_Surface *stretch;
+    SDL_Surface *display;
+};
+-------------
+struct SDL_Texture
+{
+    const void *magic;
+    Uint32 format;              /**< The pixel format of the texture */
+    int access;                 /**< SDL_TextureAccess */
+    int w;                      /**< The width of the texture */
+    int h;                      /**< The height of the texture */
+    int modMode;                /**< The texture modulation mode */
+    SDL_BlendMode blendMode;    /**< The texture blend mode */
+    Uint8 r, g, b, a;           /**< Texture modulation values */
+
+    SDL_Renderer *renderer;
+
+    /* Support for formats not supported directly by the renderer */
+    SDL_Texture *native;
+
+SDL_SW_YUVTexture *yuv;
+
+    void *pixels;
+    int pitch;
+    SDL_Rect locked_rect;
+
+    void *driverdata;           /**< Driver specific texture representation */
+
+    SDL_Texture *prev;
+    SDL_Texture *next;
+};
+(SDL/src/SDL_sysrender.h)
+
+
+4.3
+narrowed down to these two.
+-------------
+*pixels = swdata->planes[0] + rect->y * swdata->pitches[0] + rect->x * 2;
+*pitch = swdata->pitches[0];
+(SDL_SW_LockYUVTexture())
+-------------
+POOR PROGRAMMING!
+void** pixels and *pitch have to have a actual memory space to be *-ed.
+-------------
+Uint8 *planes[3];
+Uint16 pitches[3];
+(SDL_SW_YUVTexture)
+-------------
+done and all codes added removed.
+
+AVPicture:
+uint8_t * data [4] -> pixels -> planes, Uint8
+int linesize [4] -> pitch -> pitches, Uint16 / int
+
+
+SDL_QueryTexture...
+with
+SDL_QueryTexture(txt, &format, &access, &w, &h);
+this:
+sws_scale(img_convert_ctx, (const uint8_t* const*)pFrame->data, pFrame->linesize, 0, pCodecCtx->height, pict.data, pict.linesize);
+causes a Fatal Signal 11, code=2
+either works fine alone. Didn't know any connection between these two......WTF
+
+
+abandon QueryTexture.
+
+use logb to log the presenting debug process.

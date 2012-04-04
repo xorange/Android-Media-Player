@@ -8,6 +8,8 @@
 #include <android/log.h>
 #define INFO(msg) __android_log_write(ANDROID_LOG_INFO,"video.c",msg);
 
+char debugMsg[100];
+
 int main(int argc, char *argv[])
 {
   AVFormatContext *pFormatCtx;
@@ -18,17 +20,13 @@ int main(int argc, char *argv[])
   AVPacket        packet;
   int             frameFinished;
   float           aspect_ratio;
-  static struct SwsContext *img_convert_ctx;
+  struct SwsContext *img_convert_ctx;
 
 SDL_Window* window;
 SDL_Renderer* renderer;
 SDL_Texture* txt;
 Uint8* pixels;
-Uint16 pitch;
-Uint32 format;
-int access;
-int w;
-int h;
+Uint16* pitch;
 SDL_Rect        rect;
 SDL_Event       event;
 
@@ -107,14 +105,12 @@ window = SDL_CreateWindow("Texture - Window - Video",
 
 // We must call SDL_CreateRenderer in order for draw calls to affect this window.
 renderer = SDL_CreateRenderer(window, -1, 0);
-/*
+
 SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 SDL_RenderClear(renderer);
 SDL_RenderPresent(renderer);
 SDL_Delay(100);
 INFO("render present done. white window");
-*/
-
 
 //********** texture **********//
 
@@ -136,47 +132,55 @@ INFO("before this is the codec name. Getting into stream decode:");
     if(packet.stream_index==videoStream) {
       avcodec_decode_video2(pCodecCtx, pFrame, &frameFinished, 
 			   &packet);
+
+	/*****************************************************/
+	/* frame decoded */
+	/*****************************************************/
+
       if(frameFinished) {
 INFO("frame decoded finished.");
 
-SDL_LockTexture(txt, NULL, &pixels, &pitch);
+	SDL_LockTexture2(txt, NULL, &pixels, &pitch);
 
 	AVPicture pict;
-
-
+/*
 	pict.data[0] = pixels[0];
 	pict.data[1] = pixels[2];
 	pict.data[2] = pixels[1];
 
 	//??? try it first
-	pict.linesize[0] = pitch;
-	pict.linesize[1] = pitch;
-	pict.linesize[2] = pitch;
-
+	pict.linesize[0] = pitch[0];
+	pict.linesize[1] = pitch[2];
+	pict.linesize[2] = pitch[1];
+*/
 
 	img_convert_ctx = sws_getContext(pCodecCtx->width, pCodecCtx->height,
  pCodecCtx->pix_fmt, pCodecCtx->width, pCodecCtx->height,
  PIX_FMT_YUV420P, SWS_BICUBIC, NULL, NULL, NULL);
 
 	sws_scale(img_convert_ctx, (const uint8_t* const*)pFrame->data, pFrame->linesize, 0, pCodecCtx->height, pict.data, pict.linesize);
-	
+
+	/* testing */
+	//sprintf(debugMsg, "%d", *(pict.data[0])); INFO(debugMsg);
+	++i;	
+	// *(pFrame->data[0]+y*pFrame->linesize[0]+x)
+	/* testing */	
+
 SDL_UnlockTexture(txt);
 
-/*
-rect.x = 0;
-rect.y = 0;
-rect.w = pCodecCtx->width;
-rect.h = pCodecCtx->height;
-*/
-
 //int
-SDL_RenderCopy(renderer, txt, NULL, NULL);
+//SDL_RenderCopy(renderer, txt, NULL, NULL);
 //SDL_RenderClear(renderer);
 //SDL_RenderPresent(renderer);
-      
+//SDL_Delay(100);
       }
 
     }
+
+	/*****************************************************/
+	/* /frame decoded */
+	/*****************************************************/
+
 
     av_free_packet(&packet);
 /*
